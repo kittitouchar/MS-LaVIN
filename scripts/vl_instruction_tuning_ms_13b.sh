@@ -9,7 +9,7 @@ torchrun --nproc_per_node 2 --master_port 12345 train.py \
     --warmup_epochs 0.2 \
     --blr 5e-3 \
     --weight_decay 0.025 \
-    --output_dir ./LaVIN-2-13B-MS-VLIT/STRUCx2/\
+    --output_dir ./models/LaVIN-2-13B-MS-VLIT/STRUCx2/\
     --adapter_type attn\
     --adapter_dim 8\
     --adapter_scale 1\
@@ -19,4 +19,4 @@ torchrun --nproc_per_node 2 --master_port 12345 train.py \
     --visual_adapter_type router \
     --do_finetune \
     --caption_file ../data/inst_filter_cap_struct_x2.json \
-    --adapter_path ./LaVIN-13B-VLIT/15-eph-pretrain.pth 
+    --adapter_path ./models/LaVIN-13B-VLIT/15-eph-pretrain.pth 

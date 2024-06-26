@@ -24,7 +24,7 @@ def parse_args():
     parser.add_argument("--max_seq_len", type=int, default=512, help="decoder length")
     parser.add_argument('--adapter_type', type=str, default='attn', metavar='LENGTH',choices=['block','attn'],
                         help='the insert position  of adapter layer')
-    parser.add_argument('--adapter_path', type=str, default='./LaVIN-2-13Bchat-MS-VLIT/STRUCx2/checkpoint-92.pth',  help='path of pre-trained adapter')
+    parser.add_argument('--adapter_path', type=str, default='./models/LaVIN-2-13Bchat-MS-VLIT/STRUCx2/checkpoint-92.pth',  help='path of pre-trained adapter')
     parser.add_argument('--temperature', type=float, default=10., metavar='LENGTH',
                         help='the temperature of router')
     parser.add_argument('--use_vicuna',  action='store_true',   help='use vicuna weights')
