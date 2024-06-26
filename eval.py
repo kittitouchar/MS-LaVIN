@@ -232,7 +232,7 @@ def print_scores(scores):
 
 def load(
     ckpt_dir: str,
-llm_model:str,
+    llm_model:str,
     tokenizer_path: str,
     adapter_path: str,
     local_rank: int,
@@ -245,7 +245,7 @@ llm_model:str,
     hidden_proj:int,
     visual_adapter_type: str,
     temperature: float,
-use_vicuna: bool
+    use_vicuna: bool
 ) -> LaVIN_Generator:
     start_time = time.time()
     checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(ckpt_dir, llm_model)

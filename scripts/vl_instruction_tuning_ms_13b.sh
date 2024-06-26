@@ -1,0 +1,22 @@
+torchrun --nproc_per_node 2 --master_port 12345 train.py \
+    --llm_model llama-2-13b\
+    --llama_model_path ../data/weights_2/ \
+    --data_path ../data/inst_filter_cap_struct_x2.json \
+    --max_seq_len 512 \
+    --batch_size 2 \
+    --accum_iter 2 \
+    --epochs 100 \
+    --warmup_epochs 0.2 \
+    --blr 5e-3 \
+    --weight_decay 0.025 \
+    --output_dir ./LaVIN-2-13B-MS-VLIT/STRUCx2/\
+    --adapter_type attn\
+    --adapter_dim 8\
+    --adapter_scale 1\
+    --n_prompt 6 \
+    --prompt_format QCM-ALE \
+    --temperature 5.\
+    --visual_adapter_type router \
+    --do_finetune \
+    --caption_file ../data/inst_filter_cap_struct_x2.json \
+    --adapter_path ./LaVIN-13B-VLIT/15-eph-pretrain.pth 

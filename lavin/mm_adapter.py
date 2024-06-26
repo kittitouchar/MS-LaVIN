@@ -88,7 +88,7 @@ class RepAdapter(nn.Module):
 
 def forward_llama_block(self, x: torch.Tensor, start_pos: int, freqs_cis: torch.Tensor, mask: Optional[torch.Tensor], adapter=None):
     h = x + self.drop_path(self.attention.forward(self.adapter_attn(self.attention_norm(x)), start_pos, freqs_cis, mask, adapter))
-    out = h + self.drop_path(self.feed_forward.forward(self.adapter_mlp(self.ffn_norm(h))))
+    out = h + self.drop_path(self.adapter_mlp(self.feed_forward.forward(self.ffn_norm(h)))) ##
     return out
 
 def forward_llama_attn(self, x: torch.Tensor, start_pos: int, freqs_cis: torch.Tensor, mask: Optional[torch.Tensor], adapter=None):
@@ -114,19 +114,21 @@ def forward_clip(self, x: torch.Tensor):
 
 def forward_clip_full(self, x: torch.Tensor):
     x = x + self.attention(self.adapter_attn(self.ln_1(x)))
-    x = x + self.mlp(self.adapter_mlp(self.ln_2(x)))
+    #x = x + self.mlp(self.adapter_mlp(self.ln_2(x)))
+    x = x + self.adapter_mlp(self.mlp(self.ln_2(x)))
     return x
 
 
 def set_MMAdapter(model, method, dim=8, s=1, set_forward=True,t=10,gradient_checkpointing=False):
     if method == 'block':
         # not support right now
-        assert NotImplementedError
+        #assert NotImplementedError
         for _ in model.children():
-            if type(_) == lavin.eval_model.TransformerBlock or type(_) == lavin.eval_model.TransformerBlock:
+            if type(_) == lavin.model.TransformerBlock or type(_) == lavin.eval_model.TransformerBlock:
                 _.adapter_attn = RepAdapter_Router(_.dim,hidden_dim=dim,scale=s,t=t).half()
                 _.adapter_mlp = RepAdapter_Router(_.dim,hidden_dim=dim,scale=s,t=t).half()
                 _.s = s
+                _.t = t
                 _.gradient_checkpointing=gradient_checkpointing
                 bound_method = forward_llama_block.__get__(_, _.__class__)
                 if set_forward:

@@ -289,14 +289,14 @@ class Transformer(nn.Module):
         if isinstance(img_indicators,list):
             img_indicators = torch.Tensor(img_indicators).to(image_embeds.device).long()
         modality_embed=self.adapter_modality_embedding(img_indicators.unsqueeze(1))
-
+        
         # with autocast():
         image_embeds=self.adapter_proj(image_embeds)
 
         # print(image_embeds.shape)
 
         _bsz, seqlen = examples.shape
-
+        #print(examples.shape)
         examples = self.tok_embeddings(examples)
         prefix_img=self.tok_embeddings(prefix_img.unsqueeze(0)).squeeze(0)
         prefix_nonimg=self.tok_embeddings(prefix_nonimg.unsqueeze(0)).squeeze(0)
@@ -307,7 +307,7 @@ class Transformer(nn.Module):
         h=torch.cat([modality_embed.half(),h],1)[:,:seqlen]
         modality_labels=torch.zeros(_bsz,1).to(labels.device).type_as(labels)
         labels=torch.cat([modality_labels,labels],1)[:,:seqlen]
-
+        
 
         freqs_cis = self.freqs_cis.to(h.device)
         freqs_cis = freqs_cis[:seqlen]
@@ -326,7 +326,6 @@ class Transformer(nn.Module):
         output = self.output(h)
         output = output[:, :-1, :].reshape(-1, self.vocab_size)
         labels = labels[:, 1:].flatten()
-
 
         c_loss = self.criterion(output, labels)
         return c_loss

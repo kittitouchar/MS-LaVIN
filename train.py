@@ -15,10 +15,8 @@ import util.misc as misc
 from util.misc import NativeScalerWithGradNormCount as NativeScaler
 from engine import train_one_epoch
 
-from util.datasets import ScienceQADataSet,InstrcutDataSet
+from util.datasets import ScienceQADataSet,InstrcutDataSet, MSDataSet, SumDataSet, ParaphraseDataSet
 from lavin.mm_adaptation import LaVIN
-
-
 
 def get_args_parser():
     parser = argparse.ArgumentParser('MAE pre-training', add_help=False)
@@ -124,9 +122,11 @@ def get_args_parser():
     parser.add_argument('--use_caption', action='store_true', help='use image captions or not')
 
     parser.add_argument('--do_pretrain', action='store_true', help='pre-train on large scale vl instruction')
-
+    parser.add_argument('--adapter_path', type=str, default='./LaVIN-13B-VLIT/15-eph.pth')
+    parser.add_argument('--do_finetune', action='store_true', help='finetune on specific domain vl instruction')
+    parser.add_argument('--do_sum', action='store_true', help='finetune on summarization task')
+    parser.add_argument('--do_paraphrase', action='store_true', help='finetune on paraphrase task')
     return parser
-
 
 def main(args):
 
@@ -143,12 +143,23 @@ def main(args):
     np.random.seed(seed)
 
     cudnn.benchmark = True
-
+    
+    ## choose dataset by do_x
     if args.do_pretrain:
         dataset_train = InstrcutDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+
+    elif args.do_finetune:
+        dataset_train = MSDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+
+    elif args.do_sum:
+        dataset_train = SumDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+
+    elif args.do_paraphrase:
+        dataset_train = ParaphraseDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+
     else:
         dataset_train = ScienceQADataSet(args, 'train', args.llama_model_path, args.max_seq_len)
-
+    
     print(dataset_train)
 
 
@@ -184,7 +195,7 @@ def main(args):
 
     model_without_ddp = model
     print("Model = %s" % str(model_without_ddp))
-
+    print(args.batch_size, args.accum_iter, misc.get_world_size())
     eff_batch_size = args.batch_size * args.accum_iter * misc.get_world_size()
     
     if args.lr is None:  # only base_lr is specified

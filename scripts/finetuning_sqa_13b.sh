@@ -1,4 +1,4 @@
-torchrun --nproc_per_node 8 --master_port 12345 train.py \
+torchrun --nproc_per_node 4 --master_port 12345 train.py \
     --llm_model 13B\
     --llama_model_path ../data/weights/ \
     --data_path ../data/alpaca_data.json \

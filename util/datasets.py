@@ -102,7 +102,7 @@ class InstrcutDataSet(Data.Dataset):
         # --------------------------
         # ---- Raw data loading ---
         # --------------------------
-        self.data = json.load(open(os.path.join(args.data_root, 'all_data.json')))[split]
+        self.data = json.load(open(os.path.join(args.data_root, 'all_data_robust.json')))[split]
 
         self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
         self.max_words = max_words
@@ -144,6 +144,8 @@ class InstrcutDataSet(Data.Dataset):
             # image_path='../data/images/train' if self.data[idx]['image_source']=='sqa' else '../data/images/train2014'
             if self.data[idx]['image_source'] == 'sqa':
                 image = Image.open(os.path.join('../data/images/train', self.qids[idx], 'image.png')).convert('RGB')
+            elif self.data[idx]['image_source'] == 'vg':
+                image = Image.open(os.path.join('../data/images/vg/image', self.data[idx]['image'])).convert('RGB')
             else:
                 image = Image.open(os.path.join('../data/images/train2014',   'COCO_train2014_'+self.data[idx]['image'])).convert('RGB')
             image = self.transforms(image)
@@ -193,7 +195,212 @@ if __name__ == '__main__':
     # print(max_question_len,max_answer_len)
 
 
+class MSDataSet(Data.Dataset):
+    def __init__(self, args,split,model_path,max_words=512,max_image_feats=1):
+        super(MSDataSet, self).__init__()
+        self.args = args
+        # --------------------------
+        # ---- Raw data loading ---
+        # --------------------------
+        self.data = json.load(open(os.path.join(args.data_root, 'inst_filter_cap_struct_x2.json')))[split]
+
+        self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
+        self.max_words = max_words
+        self.max_image_feats=max_image_feats
+        self.split=split
+        self.qids = [item['qid'] for item in self.data]
+
+        print(f"number of problems in split {split}: {len(self.qids)}\n")
+
+        self.transforms=transforms.Compose([transforms.Resize((224, 224), interpolation=Image.BICUBIC),transforms.ToTensor(), transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)])
+
+    def tokenize(self,prompt,answer,max_words=512):
+        example=prompt+answer
+        # print(prompt)
+        prompt=torch.tensor(self.tokenizer.encode(prompt, bos=True, eos=False), dtype=torch.int64)
+        example = torch.tensor(self.tokenizer.encode(example, bos=True, eos=True), dtype=torch.int64)
+        padding = max_words - example.shape[0]
+        if padding > 0:
+            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - 1))
+        elif padding < 0:
+            example = example[:self.max_words]
+        labels = copy.deepcopy(example)
+        labels[:len(prompt)] = -1
+        example_mask = example.ge(0)
+        label_mask = labels.ge(0)
+        example[~example_mask] = 0
+        labels[~label_mask] = 0
+        example_mask = example_mask.float()
+        label_mask = label_mask.float()
+        return example, labels, example_mask,label_mask
 
 
+    def __getitem__(self, idx):
+
+        prompt_question=self.data[idx]['instruction']
+        prompt_answer=self.data[idx]['answer']
+
+        if self.data[idx]['image'] is not None:
+            # image_path='../data/images/train' if self.data[idx]['image_source']=='sqa' else '../data/images/train2014'
+            if self.data[idx]['image_source'] == 'sqa':
+                image = Image.open(os.path.join('../data/images/train', self.qids[idx], 'image.png')).convert('RGB')
+            if self.data[idx]['image_source'] == 'ms':
+                image = Image.open(os.path.join('../data/images/mstrain', self.data[idx]['image'])).convert('RGB')
+            else:
+                image = Image.open(os.path.join('../data/images/train2014',   'COCO_train2014_'+self.data[idx]['image'])).convert('RGB')
+            image = self.transforms(image)
+            indicator=1
+        else:
+            image=torch.Tensor(torch.zeros(3,224,224).float())
+            indicator=0
+
+        # print(prompt_question,prompt_answer)
+        example, labels, example_mask, label_mask=self.tokenize(prompt_question,prompt_answer)
+
+        return example, labels, example_mask, image,indicator
+
+    def __len__(self):
+        return len(self.qids)
+
+    def shuffle_list(self, list):
+        random.shuffle(list)
+
+class ParaphraseDataSet(Data.Dataset):
+    def __init__(self, args,split,model_path,max_words=512,max_image_feats=1):
+        super(ParaphraseDataSet, self).__init__()
+        self.args = args
+        # --------------------------
+        # ---- Raw data loading ---
+        # --------------------------
+        self.data = json.load(open(os.path.join(args.data_root, 'inst_paraphrase.json')))[split]
+
+        self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
+        self.max_words = max_words
+        self.max_image_feats=max_image_feats
+        self.split=split
+        self.qids = [item['qid'] for item in self.data]
+
+        print(f"number of problems in split {split}: {len(self.qids)}\n")
+
+        self.transforms=transforms.Compose([transforms.Resize((224, 224), interpolation=Image.BICUBIC),transforms.ToTensor(), transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)])
+
+    def tokenize(self,prompt,answer,max_words=512):
+        example=prompt+answer
+        # print(prompt)
+        prompt=torch.tensor(self.tokenizer.encode(prompt, bos=True, eos=False), dtype=torch.int64)
+        example = torch.tensor(self.tokenizer.encode(example, bos=True, eos=True), dtype=torch.int64)
+        padding = max_words - example.shape[0]
+        if padding > 0:
+            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - 1))
+        elif padding < 0:
+            example = example[:self.max_words]
+        labels = copy.deepcopy(example)
+        labels[:len(prompt)] = -1
+        example_mask = example.ge(0)
+        label_mask = labels.ge(0)
+        example[~example_mask] = 0
+        labels[~label_mask] = 0
+        example_mask = example_mask.float()
+        label_mask = label_mask.float()
+        return example, labels, example_mask,label_mask
 
 
+    def __getitem__(self, idx):
+
+        prompt_question=self.data[idx]['instruction']
+        prompt_answer=self.data[idx]['answer']
+
+        if self.data[idx]['image'] is not None:
+            # image_path='../data/images/train' if self.data[idx]['image_source']=='sqa' else '../data/images/train2014'
+            if self.data[idx]['image_source'] == 'sqa':
+                image = Image.open(os.path.join('../data/images/train', self.qids[idx], 'image.png')).convert('RGB')
+            if self.data[idx]['image_source'] == 'ms':
+                image = Image.open(os.path.join('../data/images/mstrain', self.data[idx]['image'])).convert('RGB')
+            else:
+                image = Image.open(os.path.join('../data/images/train2014',   'COCO_train2014_'+self.data[idx]['image'])).convert('RGB')
+            image = self.transforms(image)
+            indicator=1
+        else:
+            image=torch.Tensor(torch.zeros(3,224,224).float())
+            indicator=0
+
+        # print(prompt_question,prompt_answer)
+        example, labels, example_mask, label_mask=self.tokenize(prompt_question,prompt_answer)
+
+        return example, labels, example_mask, image,indicator
+
+    def __len__(self):
+        return len(self.qids)
+
+    def shuffle_list(self, list):
+        random.shuffle(list)
+
+class SumDataSet(Data.Dataset):
+    def __init__(self, args,split,model_path,max_words=512,max_image_feats=1):
+        super(SumDataSet, self).__init__()
+        self.args = args
+        # --------------------------
+        # ---- Raw data loading ---
+        # --------------------------
+        self.data = json.load(open(os.path.join(args.data_root, 'inst_all.json')))[split]
+
+        self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
+        self.max_words = max_words
+        self.max_image_feats=max_image_feats
+        self.split=split
+        self.qids = [item['qid'] for item in self.data]
+
+        print(f"number of problems in split {split}: {len(self.qids)}\n")
+
+        self.transforms=transforms.Compose([transforms.Resize((224, 224), interpolation=Image.BICUBIC),transforms.ToTensor(), transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)])
+
+    def tokenize(self,prompt,answer,max_words=512):
+        example=prompt+answer
+        # print(prompt)
+        prompt=torch.tensor(self.tokenizer.encode(prompt, bos=True, eos=False), dtype=torch.int64)
+        example = torch.tensor(self.tokenizer.encode(example, bos=True, eos=True), dtype=torch.int64)
+        padding = max_words - example.shape[0]
+        if padding > 0:
+            example = torch.cat((example, torch.zeros(padding, dtype=torch.int64) - 1))
+        elif padding < 0:
+            example = example[:self.max_words]
+        labels = copy.deepcopy(example)
+        labels[:len(prompt)] = -1
+        example_mask = example.ge(0)
+        label_mask = labels.ge(0)
+        example[~example_mask] = 0
+        labels[~label_mask] = 0
+        example_mask = example_mask.float()
+        label_mask = label_mask.float()
+        return example, labels, example_mask,label_mask
+
+
+    def __getitem__(self, idx):
+
+        prompt_question=self.data[idx]['instruction']
+        prompt_answer=self.data[idx]['answer']
+
+        if self.data[idx]['image'] is not None:
+            # image_path='../data/images/train' if self.data[idx]['image_source']=='sqa' else '../data/images/train2014'
+            if self.data[idx]['image_source'] == 'sqa':
+                image = Image.open(os.path.join('../data/images/train', self.qids[idx], 'image.png')).convert('RGB')
+            if self.data[idx]['image_source'] == 'ms':
+                image = Image.open(os.path.join('../data/images/mstrain', self.data[idx]['image'])).convert('RGB')
+            else:
+                image = Image.open(os.path.join('../data/images/train2014',   'COCO_train2014_'+self.data[idx]['image'])).convert('RGB')
+            image = self.transforms(image)
+            indicator=1
+        else:
+            image=torch.Tensor(torch.zeros(3,224,224).float())
+            indicator=0
+
+        # print(prompt_question,prompt_answer)
+        example, labels, example_mask, label_mask=self.tokenize(prompt_question,prompt_answer)
+
+        return example, labels, example_mask, image,indicator
+
+    def __len__(self):
+        return len(self.qids)
+
+    def shuffle_list(self, list):
+        random.shuffle(list)

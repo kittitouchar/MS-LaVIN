@@ -82,6 +82,9 @@ def LaVIN(args):
 
     checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(llama_model_path, model_name)
 
+    if args.do_finetune or args.do_sum or args.do_paraphrase:
+        print("Loading adapter")
+        adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
 
     model_args: ModelArgs = ModelArgs(
         max_seq_len=args.max_seq_len, max_batch_size=32,hidden_proj=args.hidden_proj,drop_path=args.drop_path, **params
@@ -95,27 +98,43 @@ def LaVIN(args):
         set_MMAdapter(llama,args.adapter_type,dim=args.adapter_dim,s=args.adapter_scale,t=args.temperature)
         set_Clip_Adapter(llama.backbone.visual,args.visual_adapter_type,dim=args.adapter_dim,s=args.adapter_scale,t=args.temperature)
 
-
     torch.set_default_tensor_type(torch.FloatTensor)
     llama.load_state_dict(checkpoint, strict=False)
 
     if args.use_vicuna:
         apply_model_delta_online(llama,'../data/weights/vicuna_'+args.llm_model)
 
+    if args.do_finetune or args.do_sum or args.do_paraphrase:
+        print("Assigning adapter")
+        state_dict={}
+        for key in adapter_checkpoint['model']:
+            state_dict[key.replace('module.','')]=adapter_checkpoint['model'][key]
+        llama.load_state_dict(state_dict, strict=False)
 
     learnable_keys=['adapter']
+
     total=0.
     trainable_names=[]
     for name, param in llama.named_parameters():
         for key in learnable_keys:
-
-            if key in name:
-                param.requires_grad = True
-                param.data = param.data.float()
-                total += param.nelement()
-                trainable_names.append(name)
+            if args.do_paraphrase or args.do_sum:
+                if key in name and 'visual' not in name and 'proj' not in name:
+                    param.requires_grad = True
+                    param.data = param.data.float()
+                    total += param.nelement()
+                    trainable_names.append(name)
+                else:
+                    param.requires_grad = False
             else:
-                param.requires_grad = False
+                if key in name:
+                    param.requires_grad = True
+                    param.data = param.data.float()
+                    total += param.nelement()
+                    trainable_names.append(name)
+                else:
+                    param.requires_grad = False      
+
+    print("----- Trainable params -----")
     print(trainable_names)
     print('  + Number of trainable params: %.2fM' % (total / 1e6))
     return llama
