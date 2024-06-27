@@ -1,3 +1,19 @@
+# Landslide VLM
+
+```
+conda create -n lavin python=3.8 -y
+conda activate lavin
+
+# install pytorch - use torch 2.0
+
+# install dependency and lavin
+pip install -r requirements.txt
+pip install -e .
+ipython
+jupyterlab
+```
+
+---
 ![](./assets/logo.png)
 
 ---

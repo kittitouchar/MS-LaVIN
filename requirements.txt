@@ -7,3 +7,4 @@ timm
 tensorboard
 ftfy
 gradio
+wandb
