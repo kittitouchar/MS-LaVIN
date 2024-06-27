@@ -14,7 +14,7 @@ from fairscale.nn.model_parallel.initialize import initialize_model_parallel
 from lavin.eval_model import ModelArgs, Transformer
 from lavin.tokenizer import Tokenizer
 from lavin.generator import LaVIN_Generator
-from lavin.mm_adapter import set_MMAdapter,set_Clip_Adapter
+from lavin.mm_adapter import set_MMAdapter, set_Clip_Adapter
 from util.base_prompt import build_prompt
 from dataclasses import dataclass
 import re
@@ -34,11 +34,13 @@ from util.apply_delta import apply_model_delta_online
 
 warnings.filterwarnings('ignore')
 
+
 @dataclass
 class PromptArgs:
-    prompt_format='QCM-ALE'
-    use_caption=True
-    options=["A", "B", "C", "D", "E"]
+    prompt_format = 'QCM-ALE'
+    use_caption = True
+    options = ["A", "B", "C", "D", "E"]
+
 
 def setup_model_parallel() -> Tuple[int, int]:
     local_rank = int(os.environ.get("LOCAL_RANK", -1))
@@ -52,13 +54,14 @@ def setup_model_parallel() -> Tuple[int, int]:
     torch.manual_seed(1)
     return local_rank, world_size
 
+
 def _load_and_redistribute_checkpoint(llama_model_path, model_name):
 
     with open(Path(llama_model_path) / model_name / 'params.json') as f:
         params = json.load(f)
     tokenizer = Tokenizer(model_path=str(Path(llama_model_path) / 'tokenizer.model'))
     print('Using model path: %s, model_name: %s' % (llama_model_path, model_name))
-    if model_name=='7B':
+    if model_name == '7B':
         checkpoint = torch.load(llama_model_path + model_name + '/consolidated.00.pth', map_location="cpu")
         return checkpoint, tokenizer, params
 
@@ -147,9 +150,9 @@ def _load_and_redistribute_checkpoint(llama_model_path, model_name):
                 shard_st, shard_ed = shard_size * mp_rank, shard_size * (mp_rank + 1)
                 # TODO: make more general
                 if dim == 0:
-                    value = value[shard_st: shard_ed]
+                    value = value[shard_st:shard_ed]
                 elif dim == 1:
-                    value = value[:, shard_st: shard_ed]
+                    value = value[:, shard_st:shard_ed]
                 else:
                     raise NotImplementedError()
                 local_state_dict[k] = value.clone()
@@ -157,7 +160,6 @@ def _load_and_redistribute_checkpoint(llama_model_path, model_name):
         checkpoint = local_state_dict
 
     return checkpoint, tokenizer, params
-
 
 
 def get_acc_with_contion(res_pd, key, values):
@@ -199,24 +201,15 @@ def get_scores(result_file, data_file):
     acc_average = len(res_pd[res_pd['true_false'] == True]) / num * 100
 
     scores = {
-        'acc_natural':
-        get_acc_with_contion(res_pd, 'subject', 'natural science'),
-        'acc_social':
-        get_acc_with_contion(res_pd, 'subject', 'social science'),
-        'acc_language':
-        get_acc_with_contion(res_pd, 'subject', 'language science'),
-        'acc_has_text':
-        get_acc_with_contion(res_pd, 'has_text', True),
-        'acc_has_image':
-        get_acc_with_contion(res_pd, 'has_image', True),
-        'acc_no_context':
-        get_acc_with_contion(res_pd, 'no_context', True),
-        'acc_grade_1_6':
-        get_acc_with_contion(res_pd, 'grade', ['grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6']),
-        'acc_grade_7_12':
-        get_acc_with_contion(res_pd, 'grade', ['grade7', 'grade8', 'grade9', 'grade10', 'grade11', 'grade12']),
-        'acc_average':
-        "{:.2f}".format(acc_average),
+        'acc_natural': get_acc_with_contion(res_pd, 'subject', 'natural science'),
+        'acc_social': get_acc_with_contion(res_pd, 'subject', 'social science'),
+        'acc_language': get_acc_with_contion(res_pd, 'subject', 'language science'),
+        'acc_has_text': get_acc_with_contion(res_pd, 'has_text', True),
+        'acc_has_image': get_acc_with_contion(res_pd, 'has_image', True),
+        'acc_no_context': get_acc_with_contion(res_pd, 'no_context', True),
+        'acc_grade_1_6': get_acc_with_contion(res_pd, 'grade', ['grade1', 'grade2', 'grade3', 'grade4', 'grade5', 'grade6']),
+        'acc_grade_7_12': get_acc_with_contion(res_pd, 'grade', ['grade7', 'grade8', 'grade9', 'grade10', 'grade11', 'grade12']),
+        'acc_average': "{:.2f}".format(acc_average),
     }
 
     return scores
@@ -230,55 +223,40 @@ def print_scores(scores):
     latex_output += "\\\\"
     print(latex_output)
 
-def load(
-    ckpt_dir: str,
-    llm_model:str,
-    tokenizer_path: str,
-    adapter_path: str,
-    local_rank: int,
-    world_size: int,
-    max_seq_len: int,
-    max_batch_size: int,
-    adapter_type: str,
-    adapter_dim:int,
-    adapter_scale:float,
-    hidden_proj:int,
-    visual_adapter_type: str,
-    temperature: float,
-    use_vicuna: bool
-) -> LaVIN_Generator:
+
+def load(ckpt_dir: str, llm_model: str, tokenizer_path: str, adapter_path: str, local_rank: int, world_size: int, max_seq_len: int,
+         max_batch_size: int, adapter_type: str, adapter_dim: int, adapter_scale: float, hidden_proj: int, visual_adapter_type: str,
+         temperature: float, use_vicuna: bool) -> LaVIN_Generator:
     start_time = time.time()
     checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(ckpt_dir, llm_model)
 
     print("Loading")
     adapter_checkpoint = torch.load(adapter_path, map_location="cpu")
 
-
-    model_args: ModelArgs = ModelArgs(
-        max_seq_len=max_seq_len, max_batch_size=max_batch_size,hidden_proj=hidden_proj, **params
-    )
+    model_args: ModelArgs = ModelArgs(max_seq_len=max_seq_len, max_batch_size=max_batch_size, hidden_proj=hidden_proj, **params)
     model_args.vocab_size = tokenizer.n_words
 
     torch.set_default_tensor_type(torch.cuda.HalfTensor)
     model = Transformer(model_args)
-    set_MMAdapter(model, adapter_type, dim=adapter_dim, s=adapter_scale,t=temperature)
-    set_Clip_Adapter(model.backbone.visual, visual_adapter_type, dim=adapter_dim, s=adapter_scale,t=temperature)
+    set_MMAdapter(model, adapter_type, dim=adapter_dim, s=adapter_scale, t=temperature)
+    set_Clip_Adapter(model.backbone.visual, visual_adapter_type, dim=adapter_dim, s=adapter_scale, t=temperature)
 
     torch.set_default_tensor_type(torch.FloatTensor)
     model.load_state_dict(checkpoint, strict=False)
 
     if use_vicuna:
-        apply_model_delta_online(model,'../data/weights/vicuna_'+llm_model)
+        apply_model_delta_online(model, '../data/weights/vicuna_' + llm_model)
 
-    state_dict={}
+    state_dict = {}
     for key in adapter_checkpoint['model']:
-        state_dict[key.replace('module.','')]=adapter_checkpoint['model'][key]
+        state_dict[key.replace('module.', '')] = adapter_checkpoint['model'][key]
 
     model.load_state_dict(state_dict, strict=False)
 
     generator = LaVIN_Generator(model, tokenizer)
     print(f"Loaded in {time.time() - start_time:.2f} seconds")
     return generator
+
 
 def get_pred_idx(prediction, choices, options):
     """
@@ -289,40 +267,37 @@ def get_pred_idx(prediction, choices, options):
     else:
         return random.choice(range(len(choices)))
 
-def main(
-    ckpt_dir: str,
-    tokenizer_path: str,
-    adapter_path: str,
-    data_root:str,
-    caption_file:str,
-    max_seq_len: int,
-    max_batch_size: int,
-    llm_model:str='7B',
-    generation_temperature: float = 0.1,
-    top_p: float = 0.75,
-    split='val',
-    prompt_format='QCM-ALE',
-    use_caption=False,
-    options=["A", "B", "C", "D", "E"],
-    adapter_type='repattn',
-    adapter_dim=8,
-    adapter_scale=1,
-    n_prompt=10,
-    hidden_proj=128,
-    visual_adapter_type='normal',
-    temperature=10.,
-    use_vicuna=False
-):
-    print(max_batch_size,max_seq_len)
-    print('use caption: ',use_caption)
+
+def main(ckpt_dir: str,
+         tokenizer_path: str,
+         adapter_path: str,
+         data_root: str,
+         caption_file: str,
+         max_seq_len: int,
+         max_batch_size: int,
+         llm_model: str = '7B',
+         generation_temperature: float = 0.1,
+         top_p: float = 0.75,
+         split='val',
+         prompt_format='QCM-ALE',
+         use_caption=False,
+         options=["A", "B", "C", "D", "E"],
+         adapter_type='repattn',
+         adapter_dim=8,
+         adapter_scale=1,
+         n_prompt=10,
+         hidden_proj=128,
+         visual_adapter_type='normal',
+         temperature=10.,
+         use_vicuna=False):
+    print(max_batch_size, max_seq_len)
+    print('use caption: ', use_caption)
     local_rank, world_size = setup_model_parallel()
     if local_rank > 0:
         sys.stdout = open(os.devnull, "w")
 
-    generator = load(
-        ckpt_dir,llm_model, tokenizer_path, adapter_path, local_rank, world_size, max_seq_len, max_batch_size,
-        adapter_type,adapter_dim,adapter_scale,hidden_proj,visual_adapter_type,
-    temperature,use_vicuna)
+    generator = load(ckpt_dir, llm_model, tokenizer_path, adapter_path, local_rank, world_size, max_seq_len, max_batch_size, adapter_type,
+                     adapter_dim, adapter_scale, hidden_proj, visual_adapter_type, temperature, use_vicuna)
 
     print('split: ', split)
     problems = json.load(open(os.path.join(data_root, 'problems.json')))
@@ -330,15 +305,18 @@ def main(
     captions = json.load(open(caption_file))["captions"]
     image_path = os.path.join(data_root, 'images', split)
     qids = pid_splits['%s' % (split)]
-    total_items=len(qids)
+    total_items = len(qids)
     for qid in problems:
         problems[qid]['caption'] = captions[qid] if qid in captions else ""
-    print('total_items: ',total_items)
+    print('total_items: ', total_items)
 
+    image_transforms = transforms.Compose([
+        transforms.Resize((224, 224), interpolation=Image.BICUBIC),
+        transforms.ToTensor(),
+        transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)
+    ])
 
-    image_transforms=transforms.Compose([transforms.Resize((224, 224), interpolation=Image.BICUBIC),transforms.ToTensor(), transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD)])
-
-    prompt_args=PromptArgs()
+    prompt_args = PromptArgs()
     prompt_args.prompt_format = prompt_format
     prompt_args.use_caption = use_caption
     prompt_args.options = options
@@ -346,19 +324,19 @@ def main(
     pattern = re.compile(r'The answer is ([A-Z]).')
 
     answers = []
-    preds=[]
-    for i in range(total_items//max_batch_size+1):
-        print('progresses: ',i,' / ', total_items//max_batch_size+1)
-        batch_qids=qids[i*max_batch_size:(i+1)*max_batch_size]
-        if len(batch_qids)==0:
+    preds = []
+    for i in range(total_items // max_batch_size + 1):
+        print('progresses: ', i, ' / ', total_items // max_batch_size + 1)
+        batch_qids = qids[i * max_batch_size:(i + 1) * max_batch_size]
+        if len(batch_qids) == 0:
             break
         indicators = []
-        prompts=[]
+        prompts = []
         images = []
         for qid in batch_qids:
-            prompt,_ = build_prompt(problems, qid, prompt_args)
+            prompt, _ = build_prompt(problems, qid, prompt_args)
 
-            answer=problems[qid]["answer"]
+            answer = problems[qid]["answer"]
             if problems[qid]['image'] is not None:
                 image = Image.open(os.path.join(image_path, qid, 'image.png')).convert('RGB')
                 image = image_transforms(image)
@@ -370,12 +348,15 @@ def main(
             answers.append(answer)
             images.append(image.unsqueeze(0))
             indicators.append(indicator)
-        images=torch.cat(images,0)
+        images = torch.cat(images, 0)
 
-
-        results = generator.generate(
-            prompts,images=images,indicators=indicators, max_gen_len=512, temperature=generation_temperature, top_p=top_p,n_feats=n_prompt
-        )
+        results = generator.generate(prompts,
+                                     images=images,
+                                     indicators=indicators,
+                                     max_gen_len=512,
+                                     temperature=generation_temperature,
+                                     top_p=top_p,
+                                     n_feats=n_prompt)
 
         for result in results:
             pred = pattern.findall(result)
@@ -388,11 +369,10 @@ def main(
             preds.append(pred)
 
     #evaluations
-    results={}
-    correct=0
+    results = {}
+    correct = 0
     for i, prediction in enumerate(preds):
-        pred_idx = get_pred_idx(prediction, problems[qids[i]]["choices"],
-                                prompt_args.options)  # 0, 1, ..., 4
+        pred_idx = get_pred_idx(prediction, problems[qids[i]]["choices"], prompt_args.options)  # 0, 1, ..., 4
         if pred_idx == answers[i]:
             correct += 1
         results[qids[i]] = pred_idx
@@ -400,12 +380,12 @@ def main(
     print('overall accuracy: ', acc)
 
     with open('./preds.json', 'w') as f:
-        json.dump(results,f)
+        json.dump(results, f)
 
-    scores=get_scores('./preds.json',os.path.join(data_root, 'problems.json'))
+    scores = get_scores('./preds.json', os.path.join(data_root, 'problems.json'))
     print(scores)
     import time
-    with open(str(time.time())+'.txt','w') as f:
+    with open(str(time.time()) + '.txt', 'w') as f:
         f.write(str(scores))
 
 

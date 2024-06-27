@@ -1,13 +1,11 @@
-
 import torch
 
 import json
 from lavin import ModelArgs, Tokenizer, Transformer
-from lavin.mm_adapter import set_MMAdapter,set_Clip_Adapter
+from lavin.mm_adapter import set_MMAdapter, set_Clip_Adapter
 
 from pathlib import Path
 from util.apply_delta import apply_model_delta_online
-
 
 
 def _load_and_redistribute_checkpoint(llama_model_path, model_name):
@@ -16,14 +14,12 @@ def _load_and_redistribute_checkpoint(llama_model_path, model_name):
         params = json.load(f)
     tokenizer = Tokenizer(model_path=str(Path(llama_model_path) / 'tokenizer.model'))
     print('Using model path: %s, model_name: %s' % (llama_model_path, model_name))
-    if model_name=='7B':
+    if model_name == '7B':
         checkpoint = torch.load(llama_model_path + model_name + '/consolidated.00.pth', map_location="cpu")
         return checkpoint, tokenizer, params
 
-
     checkpoints = (Path(llama_model_path) / model_name).glob('*.pth')
     checkpoints = sorted(checkpoints)
-
 
     loaded = []
     for x in checkpoints:
@@ -70,14 +66,14 @@ def _load_and_redistribute_checkpoint(llama_model_path, model_name):
         for key in row_parallel_names:
             add_weight_with_split_dim(layer_prefix + key, 1)
 
-    checkpoint=full_state_dict
-
+    checkpoint = full_state_dict
 
     return checkpoint, tokenizer, params
 
+
 def LaVIN(args):
 
-    llama_model_path =args.llama_model_path
+    llama_model_path = args.llama_model_path
     model_name = args.llm_model
 
     checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(llama_model_path, model_name)
@@ -86,35 +82,37 @@ def LaVIN(args):
         print("Loading adapter")
         adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
 
-    model_args: ModelArgs = ModelArgs(
-        max_seq_len=args.max_seq_len, max_batch_size=32,hidden_proj=args.hidden_proj,drop_path=args.drop_path, **params
-    )
+    model_args: ModelArgs = ModelArgs(max_seq_len=args.max_seq_len,
+                                      max_batch_size=32,
+                                      hidden_proj=args.hidden_proj,
+                                      drop_path=args.drop_path,
+                                      **params)
 
     model_args.vocab_size = tokenizer.n_words
     torch.set_default_tensor_type(torch.cuda.HalfTensor)
     llama = Transformer(model_args)
 
-    if   args.adapter_type=='block' or  args.adapter_type=='attn':
-        set_MMAdapter(llama,args.adapter_type,dim=args.adapter_dim,s=args.adapter_scale,t=args.temperature)
-        set_Clip_Adapter(llama.backbone.visual,args.visual_adapter_type,dim=args.adapter_dim,s=args.adapter_scale,t=args.temperature)
+    if args.adapter_type == 'block' or args.adapter_type == 'attn':
+        set_MMAdapter(llama, args.adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
+        set_Clip_Adapter(llama.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
 
     torch.set_default_tensor_type(torch.FloatTensor)
     llama.load_state_dict(checkpoint, strict=False)
 
     if args.use_vicuna:
-        apply_model_delta_online(llama,'../data/weights/vicuna_'+args.llm_model)
+        apply_model_delta_online(llama, '../data/weights/vicuna_' + args.llm_model)
 
     if args.do_finetune or args.do_sum or args.do_paraphrase:
         print("Assigning adapter")
-        state_dict={}
+        state_dict = {}
         for key in adapter_checkpoint['model']:
-            state_dict[key.replace('module.','')]=adapter_checkpoint['model'][key]
+            state_dict[key.replace('module.', '')] = adapter_checkpoint['model'][key]
         llama.load_state_dict(state_dict, strict=False)
 
-    learnable_keys=['adapter']
+    learnable_keys = ['adapter']
 
-    total=0.
-    trainable_names=[]
+    total = 0.
+    trainable_names = []
     for name, param in llama.named_parameters():
         for key in learnable_keys:
             if args.do_paraphrase or args.do_sum:
@@ -132,10 +130,9 @@ def LaVIN(args):
                     total += param.nelement()
                     trainable_names.append(name)
                 else:
-                    param.requires_grad = False      
+                    param.requires_grad = False
 
     print("----- Trainable params -----")
     print(trainable_names)
     print('  + Number of trainable params: %.2fM' % (total / 1e6))
     return llama
-
