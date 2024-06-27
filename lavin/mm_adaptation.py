@@ -71,12 +71,23 @@ def _load_and_redistribute_checkpoint(llama_model_path, model_name):
     return checkpoint, tokenizer, params
 
 
+def my_load_and_redistribute_checkpoint(llama_model_path, model_name):
+
+    with open(Path(llama_model_path) / model_name / 'params.json') as f:
+        params = json.load(f)
+    tokenizer = Tokenizer(model_path=str(Path(llama_model_path) / 'tokenizer.model'))
+    print('Using model path: %s, model_name: %s' % (llama_model_path, model_name))
+    checkpoint = torch.load(llama_model_path + model_name + '/consolidated.00.pth', map_location="cpu")
+    return checkpoint, tokenizer, params
+
+
 def LaVIN(args):
 
     llama_model_path = args.llama_model_path
     model_name = args.llm_model
 
-    checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(llama_model_path, model_name)
+    # checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(llama_model_path, model_name)
+    checkpoint, tokenizer, params = my_load_and_redistribute_checkpoint(llama_model_path, model_name)
 
     if args.do_finetune or args.do_sum or args.do_paraphrase:
         print("Loading adapter")
