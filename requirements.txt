@@ -8,3 +8,5 @@ tensorboard
 ftfy
 gradio
 wandb
+ipython
+jupyterlab

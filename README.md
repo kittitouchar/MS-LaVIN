@@ -9,8 +9,6 @@ conda activate lavin
 # install dependency and lavin
 pip install -r requirements.txt
 pip install -e .
-ipython
-jupyterlab
 ```
 
 ---
