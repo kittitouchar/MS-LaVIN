@@ -100,15 +100,22 @@ def LaVIN(args):
                                       **params)
 
     model_args.vocab_size = tokenizer.n_words
-    torch.set_default_tensor_type(torch.cuda.HalfTensor)
-    llama = Transformer(model_args)
+    # torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
-    if args.adapter_type == 'block' or args.adapter_type == 'attn':
-        set_MMAdapter(llama, args.adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
-        set_Clip_Adapter(llama.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
+    if model_args.precision == 'bf16':
+        torch.set_default_tensor_type(torch.cuda.BFloat16Tensor)
+    elif model_args.precision == 'fp16':
+        torch.set_default_tensor_type(torch.cuda.HalfTensor)
+
+    llama = Transformer(model_args)
 
     torch.set_default_tensor_type(torch.FloatTensor)
     llama.load_state_dict(checkpoint, strict=False)
+
+    if args.adapter_type == 'block' or args.adapter_type == 'attn':
+        # ! TODO add precision to Adapter
+        set_MMAdapter(llama, args.adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
+        set_Clip_Adapter(llama.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
 
     if args.use_vicuna:
         apply_model_delta_online(llama, '../data/weights/vicuna_' + args.llm_model)
