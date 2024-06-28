@@ -206,8 +206,10 @@ if __name__ == '__main__':
 
 class MSDataSet(Data.Dataset):
 
-    def __init__(self, args, split, model_path, max_words=512, max_image_feats=1):
+    def __init__(self, args, split, model_path, max_words=512, max_image_feats=1, test=False):
         super(MSDataSet, self).__init__()
+        self.test = test
+
         self.args = args
         # --------------------------
         # ---- Raw data loading ---
@@ -250,7 +252,6 @@ class MSDataSet(Data.Dataset):
         return example, labels, example_mask, label_mask
 
     def __getitem__(self, idx):
-
         prompt_question = self.data[idx]['instruction']
         prompt_answer = self.data[idx]['answer']
 
@@ -267,7 +268,9 @@ class MSDataSet(Data.Dataset):
             image = torch.Tensor(torch.zeros(3, 224, 224).float())
             indicator = 0
 
-        # print(prompt_question,prompt_answer)
+        if self.test:
+            return image, indicator, prompt_question, prompt_answer, idx
+
         example, labels, example_mask, label_mask = self.tokenize(prompt_question, prompt_answer)
 
         return example, labels, example_mask, image, indicator
