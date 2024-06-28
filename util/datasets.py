@@ -108,7 +108,7 @@ class InstrcutDataSet(Data.Dataset):
         # ---- Raw data loading ---
         # --------------------------
         self.data_root = args.data_root
-        self.data = json.load(open(os.path.join(args.data_root, 'all_data_robust.json')))[split]
+        self.data = json.load(open(os.path.join(args.data_root, 'all_data.json')))[split]
 
         self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
         self.max_words = max_words
@@ -151,11 +151,11 @@ class InstrcutDataSet(Data.Dataset):
 
         if self.data[idx]['image'] is not None:
             if self.data[idx]['image_source'] == 'sqa':
-                image = Image.open(os.path.join(self.data_root, '/train', self.qids[idx], 'image.png')).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/train', self.qids[idx], 'image.png')).convert('RGB')
             elif self.data[idx]['image_source'] == 'vg':
-                image = Image.open(os.path.join(self.data_root, '/vg/image', self.data[idx]['image'])).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/vg/image', self.data[idx]['image'])).convert('RGB')
             else:
-                image = Image.open(os.path.join(self.data_root, '/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
             image = self.transforms(image)
             indicator = 1
         else:
@@ -257,11 +257,11 @@ class MSDataSet(Data.Dataset):
 
         if self.data[idx]['image'] is not None:
             if self.data[idx]['image_source'] == 'sqa':
-                image = Image.open(os.path.join('./data/images/train', self.qids[idx], 'image.png')).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/train', self.qids[idx], 'image.png')).convert('RGB')
             if self.data[idx]['image_source'] == 'ms':
-                image = Image.open(os.path.join('./data/images/mstrain', self.data[idx]['image'])).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/mstrain', self.data[idx]['image'])).convert('RGB')
             else:
-                image = Image.open(os.path.join('./data/images/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
+                image = Image.open(os.path.join(self.data_root, 'images/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
             image = self.transforms(image)
             indicator = 1
         else:
