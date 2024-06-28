@@ -15,7 +15,7 @@
             "name": "train_landslide",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/train_landslide.py",
+            "program": "${workspaceFolder}/landslide_train.py",
             "console": "integratedTerminal",
             "args": [
                 "--do_finetune",
