@@ -155,8 +155,11 @@ def load(args) -> LaVIN_Generator:
     start_time = time.time()
     checkpoint, tokenizer, params = _load_and_redistribute_checkpoint(args.llama_model_path, args.llm_model)
 
-    print("Loading adapter checkpoint...")
-    adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
+    if os.path.exists(args.adapter_path):
+        print("Loading adapter checkpoint...")
+        adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
+    else:
+        print(f"Adapter checkpoint not found at {args.adapter_path}")
 
     model_args: ModelArgs = ModelArgs(max_seq_len=args.max_seq_len, hidden_proj=args.hidden_proj, **params)
     model_args.vocab_size = tokenizer.n_words
@@ -175,11 +178,12 @@ def load(args) -> LaVIN_Generator:
     set_MMAdapter(model, args.adapter_type, dim=args.adapter_dim, s=s, t=args.temperature, precision=model_args.precision)
     set_Clip_Adapter(model.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=s, t=t, precision='fp16')
 
-    state_dict = {}
-    for key in adapter_checkpoint['model']:
-        state_dict[key.replace('module.', '')] = adapter_checkpoint['model'][key]
+    if os.path.exists(args.adapter_path):
+        state_dict = {}
+        for key in adapter_checkpoint['model']:
+            state_dict[key.replace('module.', '')] = adapter_checkpoint['model'][key]
+        model.load_state_dict(state_dict, strict=False)
 
-    model.load_state_dict(state_dict, strict=False)
     model = model.cuda()
 
     generator = LaVIN_Generator(model, tokenizer)
