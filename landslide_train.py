@@ -23,13 +23,15 @@ from engine import train_one_epoch
 
 from util.datasets import ScienceQADataSet, InstrcutDataSet, MSDataSet, SumDataSet, ParaphraseDataSet
 from lavin.mm_adaptation import LaVIN
-
+import wandb
+import time
 
 @dataclass
 class TrainArgs:
     batch_size: int = 2  # per gpu, effective batch size is batch_size * accum_iter * # gpus
     accum_iter: int = 2
     epochs: int = 100
+    wandb_enable: bool = False
 
     # Model parameters
     llama_model_path: str = './data/weights_2/'
@@ -90,11 +92,20 @@ class TrainArgs:
 
 def main(**kwargs):
     args = TrainArgs(**kwargs)
+
     os.makedirs(args.output_dir, exist_ok=True)
     with open(os.path.join(args.output_dir, "args.json"), mode="w", encoding="utf-8") as f:
         f.write(json.dumps(asdict(args), indent=4, sort_keys=True))
 
     misc.init_distributed_mode(args)
+
+    if misc.is_main_process() and args.wandb_enable:
+        wandb.init(project='landslide', 
+        name=args.output_dir.split('/')[-1],
+        dir=args.output_dir,
+        config=vars(args),
+        )
+
 
     print('job dir: {}'.format(os.path.dirname(os.path.realpath(__file__))))
     print("{}".format(args).replace(', ', ',\n'))
@@ -168,7 +179,7 @@ def main(**kwargs):
 
     if args.distributed:
         print(args.gpu)
-        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu])#, find_unused_parameters=True)
         model_without_ddp = model.module
 
     # following timm: set wd as 0 for bias and norm layers

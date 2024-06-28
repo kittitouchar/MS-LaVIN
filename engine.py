@@ -6,6 +6,7 @@ import torch
 
 import util.misc as misc
 import util.lr_sched as lr_sched
+import wandb
 
 
 def train_one_epoch(model: torch.nn.Module,
@@ -79,6 +80,9 @@ def train_one_epoch(model: torch.nn.Module,
             epoch_1000x = int((data_iter_step / len(data_loader) + epoch) * 1000)
             log_writer.add_scalar('c_train_loss', c_loss_value_reduce, epoch_1000x)
             log_writer.add_scalar('lr', lr, epoch_1000x)
+
+        if misc.is_main_process() and wandb.run is not None:
+            wandb.log({"c_loss_iter": c_loss_value_reduce, 'lr': lr})
 
     # gather the stats from all processes
     metric_logger.synchronize_between_processes()
