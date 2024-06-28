@@ -136,5 +136,7 @@ outputs/
 debug.py
 
 
+data/weights/
+
 data/images/
 output_dir
