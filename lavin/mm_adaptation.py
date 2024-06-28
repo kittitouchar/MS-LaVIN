@@ -109,14 +109,16 @@ def LaVIN(args):
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
     llama = Transformer(model_args)
+    #delete language encoder
+    del llama.backbone.transformer
 
     torch.set_default_tensor_type(torch.FloatTensor)
     llama.load_state_dict(checkpoint, strict=False)
 
     if args.adapter_type == 'block' or args.adapter_type == 'attn':
-        # ! TODO add precision to Adapter
-        set_MMAdapter(llama, args.adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
-        set_Clip_Adapter(llama.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=args.adapter_scale, t=args.temperature)
+        t, s = args.temperature, args.adapter_scale
+        set_MMAdapter(llama, args.adapter_type, dim=args.adapter_dim, s=s, t=args.temperature, precision=model_args.precision)
+        set_Clip_Adapter(llama.backbone.visual, args.visual_adapter_type, dim=args.adapter_dim, s=s, t=t, precision='fp16')
 
     if args.use_vicuna:
         apply_model_delta_online(llama, '../data/weights/vicuna_' + args.llm_model)
@@ -150,6 +152,10 @@ def LaVIN(args):
                     trainable_names.append(name)
                 else:
                     param.requires_grad = False
+
+    for n, p in llama.named_parameters():
+        # if p.requires_grad:
+        print(p.dtype, p.requires_grad, n)
 
     print("----- Trainable params -----")
     print(trainable_names)

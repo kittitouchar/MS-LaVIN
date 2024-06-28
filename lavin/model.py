@@ -37,7 +37,7 @@ class ModelArgs:
     max_batch_size: int = 32
     max_seq_len: int = 2048
     drop_path: float = 0.
-    precision: str = 'bf16'
+    precision: str = 'fp16'  # fp16 or bf16
 
 
 class RMSNorm(torch.nn.Module):
@@ -177,8 +177,9 @@ class TransformerBlock(nn.Module):
 class AdapterMLP(nn.Module):
     """ Pytorch Implemention of RepAdapter for 1d tensor"""
 
-    def __init__(self, in_features=768, hidden_dim=128, out_features=4096):
+    def __init__(self, in_features=768, hidden_dim=128, out_features=4096, precision='fp16'):
         super().__init__()
+        self.precision = {'fp16': torch.float16, 'bf16': torch.bfloat16}[precision]
         self.conv_A = nn.Linear(in_features, hidden_dim)
         self.conv_B = nn.Linear(hidden_dim, out_features)
 
@@ -188,7 +189,7 @@ class AdapterMLP(nn.Module):
         nn.init.zeros_(self.conv_B.bias)
 
     def forward(self, x):
-        with autocast():
+        with autocast(dtype=self.precision):
             x = self.conv_B(F.silu(self.conv_A(x)))
         return x
 
@@ -216,8 +217,8 @@ class Transformer(nn.Module):
         self.backbone = clip.load('ViT-L/14', device='cpu')[0]
 
         #handcraft define self.backbone.visual.transformer.width
-        self.adapter_proj = AdapterMLP(1024, params.hidden_proj, params.dim)
-        self.adapter_modality_embedding = nn.Embedding(2, params.dim)
+        self.adapter_proj = AdapterMLP(1024, params.hidden_proj, params.dim, precision=params.precision).float()
+        self.adapter_modality_embedding = nn.Embedding(2, params.dim).float()
 
     def insert_image_embeds(self, examples, labels, image_embeds, prefix_img, prefix_nonimg, img_indicators):
         _bsz, seqlen, _ = examples.shape
@@ -241,30 +242,35 @@ class Transformer(nn.Module):
         new_labels = torch.cat(new_labels, 0)
         return new_examples, new_labels
 
+    def _convert_dtype(self, x):
+        if self.params.precision == 'fp16':
+            return x.half()
+        elif self.params.precision == 'bf16':
+            return x.bfloat16()
+
     def forward(self, examples, labels, images=None, prefix_img=None, prefix_nonimg=None, img_indicators=None):
 
         # print(images.dtype)
-        image_embeds = self.backbone.encode_image(images).half()
+        image_embeds = self.backbone.encode_image(images)  # dtype: float32
+        image_embeds = self._convert_dtype(image_embeds)  # dtype: precision
 
         # print(img_indicators)
         if isinstance(img_indicators, list):
             img_indicators = torch.Tensor(img_indicators).to(image_embeds.device).long()
-        modality_embed = self.adapter_modality_embedding(img_indicators.unsqueeze(1))
+        modality_embed = self.adapter_modality_embedding(img_indicators.unsqueeze(1))  # dtype: float32
+        modality_embed = self._convert_dtype(modality_embed)  # dtype: precision
 
-        # with autocast():
-        image_embeds = self.adapter_proj(image_embeds)
-
-        # print(image_embeds.shape)
+        image_embeds = self.adapter_proj(image_embeds)  # dtype: precision, [B, 6, D]
 
         _bsz, seqlen = examples.shape
         #print(examples.shape)
-        examples = self.tok_embeddings(examples)
-        prefix_img = self.tok_embeddings(prefix_img.unsqueeze(0)).squeeze(0)
+        examples = self.tok_embeddings(examples)  # [B, L=512, D]
+        prefix_img = self.tok_embeddings(prefix_img.unsqueeze(0)).squeeze(0)  # [l, D]
         prefix_nonimg = self.tok_embeddings(prefix_nonimg.unsqueeze(0)).squeeze(0)
 
         h, labels = self.insert_image_embeds(examples, labels, image_embeds, prefix_img, prefix_nonimg, img_indicators)
 
-        h = torch.cat([modality_embed.half(), h], 1)[:, :seqlen]
+        h = torch.cat([modality_embed, h], 1)[:, :seqlen]
         modality_labels = torch.zeros(_bsz, 1).to(labels.device).type_as(labels)
         labels = torch.cat([modality_labels, labels], 1)[:, :seqlen]
 

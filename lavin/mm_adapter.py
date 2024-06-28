@@ -9,8 +9,10 @@ import lavin.eval_model
 class RepAdapter_Router(nn.Module):
     """ Pytorch Implemention of RepAdapter for 1d tensor"""
 
-    def __init__(self, in_features=768, hidden_dim=8, groups=2, scale=1, t=10.):
+    def __init__(self, in_features=768, hidden_dim=8, groups=2, scale=1, t=10., precision='fp16'):
         super().__init__()
+        self.precision = {'fp16': torch.float16, 'bf16': torch.bfloat16}[precision]
+
         self.conv_A = nn.Conv1d(in_features, hidden_dim, 1, groups=1, bias=True)
         self.conv_B = nn.Conv1d(hidden_dim, in_features, 1, groups=groups, bias=True)
 
@@ -32,9 +34,15 @@ class RepAdapter_Router(nn.Module):
         nn.init.zeros_(self.conv_D.bias)
 
     def forward(self, x, weights=None):
-        with autocast():
+        with autocast(dtype=self.precision):
             if weights is None:
-                weights = torch.softmax(self.expert_weights(x[:, 0]) / self.t, -1).half()
+                w = self.expert_weights(x[:, 0])
+                weights = torch.softmax(self.expert_weights(x[:, 0]) / self.t, -1)  # dtype: float32
+                if self.precision == torch.float16:
+                    weights = weights.half()
+                elif self.precision == torch.bfloat16:
+                    weights = weights.bfloat16()
+
             x = x.transpose(1, 2)
             x_ = self.dropout(self.conv_A(x))
             x = self.conv_B(x_) * self.scale * weights[:, 0, None, None] + self.conv_D(x_) * self.scale * weights[:, 1, None, None] + x
@@ -48,8 +56,10 @@ class RepAdapter(nn.Module):
     copy from https://github.com/luogen1996/RepAdapter/blob/main/repadapter.py
     """
 
-    def __init__(self, in_features=768, hidden_dim=8, groups=2, scale=1):
+    def __init__(self, in_features=768, hidden_dim=8, groups=2, scale=1, precision='fp16'):
         super().__init__()
+        self.precision = {'fp16': torch.float16, 'bf16': torch.bfloat16}[precision]
+
         self.conv_A = nn.Conv1d(in_features, hidden_dim, 1, groups=1, bias=True)
         self.conv_B = nn.Conv1d(hidden_dim, in_features, 1, groups=groups, bias=True)
 
@@ -63,7 +73,7 @@ class RepAdapter(nn.Module):
         nn.init.zeros_(self.conv_B.bias)
 
     def forward(self, x, weights=None):
-        with autocast():
+        with autocast(dtype=self.precision):
             x = x.transpose(1, 2)
             x = self.conv_B(self.dropout(self.conv_A(x)))
             x = x.transpose(1, 2).contiguous()
@@ -110,7 +120,7 @@ def forward_clip_full(self, x: torch.Tensor):
     return x
 
 
-def set_MMAdapter(model, method, dim=8, s=1, set_forward=True, t=10, gradient_checkpointing=False):
+def set_MMAdapter(model, method, dim=8, s=1, set_forward=True, t=10, gradient_checkpointing=False, precision='fp16'):
     if method == 'block':
         # not support right now
         #assert NotImplementedError
@@ -130,7 +140,7 @@ def set_MMAdapter(model, method, dim=8, s=1, set_forward=True, t=10, gradient_ch
     else:
         for _ in model.children():
             if type(_) == lavin.model.TransformerBlock or type(_) == lavin.eval_model.TransformerBlock:
-                _.adapter_attn = RepAdapter_Router(_.dim, hidden_dim=dim, scale=s, t=t).half()
+                _.adapter_attn = RepAdapter_Router(_.dim, hidden_dim=dim, scale=s, t=t, precision=precision)  # .half()
                 _.s = s
                 _.t = t
                 _.gradient_checkpointing = gradient_checkpointing
@@ -141,22 +151,22 @@ def set_MMAdapter(model, method, dim=8, s=1, set_forward=True, t=10, gradient_ch
                 if set_forward:
                     setattr(_, 'forward', bound_method)
             elif len(list(_.children())) != 0:
-                set_MMAdapter(_, method, dim, s, set_forward=set_forward, t=t, gradient_checkpointing=gradient_checkpointing)
+                set_MMAdapter(_, method, dim, s, set_forward=set_forward, t=t, gradient_checkpointing=gradient_checkpointing, precision=precision)
 
 
 from clip.model import ResidualAttentionBlock
 
 
-def set_Clip_Adapter(model, method, dim=8, s=1, set_forward=True, t=10.):
+def set_Clip_Adapter(model, method, dim=8, s=1, set_forward=True, t=10., precision='fp16'):
     for _ in model.children():
         if type(_) == ResidualAttentionBlock:
             if method == 'router':
-                _.adapter_attn = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t)
+                _.adapter_attn = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t, precision=precision)
             elif method == 'router_block':
-                _.adapter_attn = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t)
-                _.adapter_mlp = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t)
+                _.adapter_attn = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t, precision=precision)
+                _.adapter_mlp = RepAdapter_Router(1024, hidden_dim=dim, scale=s, t=t, precision=precision)
             else:
-                _.adapter_attn = RepAdapter(1024, hidden_dim=dim, scale=s)
+                _.adapter_attn = RepAdapter(1024, hidden_dim=dim, scale=s, precision=precision)
             _.s = s
             if method == 'router_block':
                 bound_method = forward_clip_full.__get__(_, _.__class__)
@@ -165,4 +175,4 @@ def set_Clip_Adapter(model, method, dim=8, s=1, set_forward=True, t=10.):
             if set_forward:
                 setattr(_, 'forward', bound_method)
         elif len(list(_.children())) != 0:
-            set_Clip_Adapter(_, method, dim, s, set_forward=set_forward, t=t)
+            set_Clip_Adapter(_, method, dim, s, set_forward=set_forward, t=t, precision=precision)
