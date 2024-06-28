@@ -27,7 +27,7 @@ from lavin.mm_adaptation import LaVIN
 
 @dataclass
 class TrainArgs:
-    batch_size: int = 64  # per gpu, effective batch size is batch_size * accum_iter * # gpus
+    batch_size: int = 2  # per gpu, effective batch size is batch_size * accum_iter * # gpus
     accum_iter: int = 1
     epochs: int = 400
 
@@ -70,6 +70,7 @@ class TrainArgs:
 
     seed: int = 0
     resume: str = ''
+    adapter_path: str = ''  # path to adapter checkpoint
     wandb_enable: bool = False
 
     # datasets
@@ -107,45 +108,44 @@ def main(**kwargs):
 
     cudnn.benchmark = True
 
-    if False:  # dataset is not supported now
-        ## choose dataset by do_x
-        if args.do_pretrain:
-            dataset_train = InstrcutDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+    ## choose dataset by do_x
+    if args.do_pretrain:
+        dataset_train = InstrcutDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
 
-        elif args.do_finetune:
-            dataset_train = MSDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+    elif args.do_finetune:
+        dataset_train = MSDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
 
-        elif args.do_sum:
-            dataset_train = SumDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+    elif args.do_sum:
+        dataset_train = SumDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
 
-        elif args.do_paraphrase:
-            dataset_train = ParaphraseDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
+    elif args.do_paraphrase:
+        dataset_train = ParaphraseDataSet(args, 'all', args.llama_model_path, args.max_seq_len)
 
-        else:
-            dataset_train = ScienceQADataSet(args, 'train', args.llama_model_path, args.max_seq_len)
+    else:
+        dataset_train = ScienceQADataSet(args, 'train', args.llama_model_path, args.max_seq_len)
 
-        print(dataset_train)
+    print(dataset_train)
 
-        num_tasks = misc.get_world_size()
-        global_rank = misc.get_rank()
-        sampler_train = torch.utils.data.DistributedSampler(dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True)
+    num_tasks = misc.get_world_size()
+    global_rank = misc.get_rank()
+    sampler_train = torch.utils.data.DistributedSampler(dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True)
 
-        print("Sampler_train = %s" % str(sampler_train))
+    print("Sampler_train = %s" % str(sampler_train))
 
-        if global_rank == 0 and args.log_dir is not None:
-            os.makedirs(args.log_dir, exist_ok=True)
-            log_writer = SummaryWriter(log_dir=args.log_dir)
-        else:
-            log_writer = None
+    if global_rank == 0 and args.log_dir is not None:
+        os.makedirs(args.log_dir, exist_ok=True)
+        log_writer = SummaryWriter(log_dir=args.log_dir)
+    else:
+        log_writer = None
 
-        data_loader_train = torch.utils.data.DataLoader(
-            dataset_train,
-            sampler=sampler_train,
-            batch_size=args.batch_size,
-            num_workers=args.num_workers,
-            pin_memory=args.pin_mem,
-            drop_last=True,
-        )
+    data_loader_train = torch.utils.data.DataLoader(
+        dataset_train,
+        sampler=sampler_train,
+        batch_size=args.batch_size,
+        num_workers=args.num_workers,
+        pin_memory=args.pin_mem,
+        drop_last=True,
+    )
 
     # define the model
     model = LaVIN(args)
