@@ -28,8 +28,8 @@ from lavin.mm_adaptation import LaVIN
 @dataclass
 class TrainArgs:
     batch_size: int = 2  # per gpu, effective batch size is batch_size * accum_iter * # gpus
-    accum_iter: int = 1
-    epochs: int = 400
+    accum_iter: int = 2
+    epochs: int = 100
 
     # Model parameters
     llama_model_path: str = './data/weights/'
@@ -75,8 +75,8 @@ class TrainArgs:
 
     # datasets
     data_path: str = '/instruction_dataset/'
-    output_dir: str = './output_dir'  # path where to save, empty for no saving
-    log_dir: str = './output_dir'  # path where to tensorboard log
+    output_dir: str = './output_dir/test'  # path where to save, empty for no saving
+    log_dir: str = './output_dir/test'  # path where to tensorboard log
     prompt_format: str = 'CQM-A'
     options: list = field(default_factory=lambda: ["A", "B", "C", "D", "E"])
     caption_file: str = './data/captions.json'
