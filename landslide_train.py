@@ -33,7 +33,7 @@ class TrainArgs:
 
     # Model parameters
     llama_model_path: str = './data/weights/'
-    llm_model: str = '100M'  # 7B
+    llm_model: str = 'llama-2-13b-chat'  # 7B
     use_vicuna: bool = False
 
     visual_adapter_type: str = 'normal'  # router, router_block,
@@ -70,7 +70,7 @@ class TrainArgs:
 
     seed: int = 0
     resume: str = ''
-    adapter_path: str = ''  # path to adapter checkpoint
+    adapter_path: str = './models/LaVIN-2-13Bchat-MS-VLIT/STRUCx2/checkpoint-99.pth'  # path to adapter checkpoint
     wandb_enable: bool = False
 
     # datasets
