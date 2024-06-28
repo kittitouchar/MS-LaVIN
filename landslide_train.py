@@ -32,7 +32,7 @@ class TrainArgs:
     epochs: int = 100
 
     # Model parameters
-    llama_model_path: str = './data/weights/'
+    llama_model_path: str = './data/weights_2/'
     llm_model: str = 'llama-2-13b-chat'  # 7B
     use_vicuna: bool = False
 
@@ -70,7 +70,7 @@ class TrainArgs:
 
     seed: int = 0
     resume: str = ''
-    adapter_path: str = './models/LaVIN-2-13Bchat-MS-VLIT/STRUCx2/checkpoint-99.pth'  # path to adapter checkpoint
+    adapter_path: str = './checkpoint-99.pth'  # path to adapter checkpoint
     wandb_enable: bool = False
 
     # datasets
@@ -80,7 +80,7 @@ class TrainArgs:
     prompt_format: str = 'CQM-A'
     options: list = field(default_factory=lambda: ["A", "B", "C", "D", "E"])
     caption_file: str = './data/captions.json'
-    data_root: str = './data'
+    data_root: str = '../data'
     use_caption: bool = False  # use image captions or not
     do_finetune: bool = False  # pre-train on large scale vl instruction
     do_pretrain: bool = False  # pre-train on large scale vl instruction

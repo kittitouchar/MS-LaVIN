@@ -26,7 +26,7 @@ from util.datasets import MSDataSet
 
 @dataclass
 class EvalArgs(TrainArgs):
-    generation_temperature: float = 0.0
+    generation_temperature: float = 0.1
     top_p: float = 0.75
 
 
@@ -212,7 +212,6 @@ def main(**kwargs):
 
         print("Pred:", predictions)
         print("GT:", prompt_answers)
-        break
 
 
 if __name__ == "__main__":
