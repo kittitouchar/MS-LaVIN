@@ -1,5 +1,5 @@
 import torch
-
+import os
 import json
 from lavin import ModelArgs, Tokenizer, Transformer
 from lavin.mm_adapter import set_MMAdapter, set_Clip_Adapter
@@ -90,8 +90,9 @@ def LaVIN(args):
     checkpoint, tokenizer, params = my_load_and_redistribute_checkpoint(llama_model_path, model_name)
 
     if args.do_finetune or args.do_sum or args.do_paraphrase:
-        print("Loading adapter")
-        adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
+        if os.path.exists(args.adapter_path):
+            print("Loading adapter")
+            adapter_checkpoint = torch.load(args.adapter_path, map_location="cpu")
 
     model_args: ModelArgs = ModelArgs(max_seq_len=args.max_seq_len,
                                       max_batch_size=32,
@@ -120,7 +121,7 @@ def LaVIN(args):
     if args.use_vicuna:
         apply_model_delta_online(llama, '../data/weights/vicuna_' + args.llm_model)
 
-    if args.do_finetune or args.do_sum or args.do_paraphrase:
+    if (args.do_finetune or args.do_sum or args.do_paraphrase) and os.path.exists(args.adapter_path):
         print("Assigning adapter")
         state_dict = {}
         for key in adapter_checkpoint['model']:
