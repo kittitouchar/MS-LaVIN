@@ -30,6 +30,7 @@ class ModelArgs:
 
     max_batch_size: int = 32
     max_seq_len: int = 2048
+    precision: str = "fp16"
 
 
 class RMSNorm(torch.nn.Module):
@@ -221,8 +222,14 @@ class Transformer(nn.Module):
 
         self.backbone = clip.load('ViT-L/14', device='cpu')[0]
 
-        self.adapter_proj = AdapterMLP(1024, params.hidden_proj, params.dim)
-        self.adapter_modality_embedding = nn.Embedding(2, params.dim)
+        self.adapter_proj = AdapterMLP(1024, params.hidden_proj, params.dim, precision=params.precision).float()
+        self.adapter_modality_embedding = nn.Embedding(2, params.dim).float()
+
+    def _convert_dtype(self, x):
+        if self.params.precision == 'fp16':
+            return x.half()
+        elif self.params.precision == 'bf16':
+            return x.bfloat16()
 
     @torch.inference_mode()
     def forward(self, tokens: torch.Tensor, start_pos: int):

@@ -15,7 +15,6 @@ class LaVIN_Generator:
     def __init__(self, model: Transformer, tokenizer: Tokenizer):
         self.model = model
         self.tokenizer = tokenizer
-        # self.backbone = clip.load('ViT-B/16', device='cpu')[0]
 
     def insert_image_embeds(self, examples, image_embeds, prefix_img, prefix_nonimg, img_indicators):
         _bsz, seqlen, _ = examples.shape
@@ -41,7 +40,7 @@ class LaVIN_Generator:
         n_feats: int = 3,
         temperature: float = 0.8,
         top_p: float = 0.95,
-    ) -> List[str]:
+    ):
         bsz = len(prompts)
         params = self.model.params
         assert bsz <= params.max_batch_size, (bsz, params.max_batch_size)
@@ -54,7 +53,8 @@ class LaVIN_Generator:
         self.model.backbone.cuda()
 
         image_embeds = self.model.backbone.encode_image(images)
-        image_embeds = self.model.adapter_proj(image_embeds.half())
+        image_embeds = self.model._convert_dtype(image_embeds)
+        image_embeds = self.model.adapter_proj(image_embeds)
 
         prompt_tokens = []
         for i, x in enumerate(prompts):
@@ -80,6 +80,7 @@ class LaVIN_Generator:
         token_embeds = self.model.tok_embeddings(tokens)
         indicators = torch.Tensor(indicators).cuda().long()
         modality_embedding = self.model.adapter_modality_embedding(indicators).unsqueeze(1)
+        modality_embedding = self.model._convert_dtype(modality_embedding)  # dtype: precision
 
         for i in range(len(token_embeds)):
             if indicators[i] == 1:
@@ -114,6 +115,7 @@ class LaVIN_Generator:
             prev_pos = cur_pos
 
         decoded = []
+        decoded_responses = []
         for i, t in enumerate(tokens.tolist()):
             # cut to max gen len
             t = t[:len(prompt_tokens[i]) + max_gen_len]
@@ -124,7 +126,11 @@ class LaVIN_Generator:
                 pass
             decoded.append(self.tokenizer.decode(t))
 
-        return decoded
+            # cut the prefix prompt
+            response = t[len(prompt_tokens[i]):]
+            decoded_responses.append(self.tokenizer.decode(response))
+
+        return decoded, decoded_responses
 
 
 def sample_top_p(probs, p):

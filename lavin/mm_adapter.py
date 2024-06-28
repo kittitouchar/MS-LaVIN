@@ -100,7 +100,15 @@ def forward_llama_attn(self, x: torch.Tensor, start_pos: int, freqs_cis: torch.T
 def forward_llama_attn_cache(self, x: torch.Tensor, start_pos: int, freqs_cis: torch.Tensor, mask: Optional[torch.Tensor], adapter=None):
     bs_ = x.shape[0]
     if start_pos == 0:
-        self.cache_weights[:bs_] = torch.softmax(self.adapter_attn.expert_weights(self.attention_norm(x)[:, 0]) / self.t, -1).half()
+
+        precision = self.adapter_attn.precision
+        with autocast(dtype=self.adapter_attn.precision):
+            cache_weights = torch.softmax(self.adapter_attn.expert_weights(self.attention_norm(x)[:, 0]) / self.t, -1)
+            if precision == torch.float16:
+                self.cache_weights[:bs_] = cache_weights.half()
+            elif precision == torch.bfloat16:
+                self.cache_weights[:bs_] = cache_weights.bfloat16()
+
     h = x + self.drop_path(
         self.attention.forward(self.adapter_attn(self.attention_norm(x), weights=self.cache_weights[:bs_]), start_pos, freqs_cis, mask, adapter))
     out = h + self.drop_path(self.feed_forward.forward(self.ffn_norm(h)))
