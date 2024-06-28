@@ -101,6 +101,7 @@ def main(**kwargs):
 
     if misc.is_main_process() and args.wandb_enable:
         wandb.init(project='landslide', 
+        entity="landslide_tohoku",
         name=args.output_dir.split('/')[-1],
         dir=args.output_dir,
         config=vars(args),
