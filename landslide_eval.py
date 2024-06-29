@@ -190,15 +190,14 @@ def main(
     llm_model="7B",
     adapter_path='7B-checkpoint-99.pth',
     temperature=1.,
-    top_p=1.,
+    top_p=0.95,
+    sampling_seed=23,
 ):
 
     args = TrainArgs(
         llama_model_path=llama_model_path,
         llm_model=llm_model,
         adapter_path=adapter_path,
-        temperature=temperature,
-        top_p=top_p,
     )
     setup_model_parallel()
     generator = load(args)
@@ -216,14 +215,16 @@ Responese:"""
             images=images,
             indicators=[1],
             max_gen_len=512,
-            temperature=args.temperature,
             n_feats=6,
-            top_p=args.top_p,
+            temperature=temperature,
+            top_p=top_p,
+            sampling_seed=sampling_seed,
         )
 
         print("Pred:", predictions, "\n")
         print("GT:", prompt_answers)
         print("-----------------")
+        break
 
 
 if __name__ == "__main__":

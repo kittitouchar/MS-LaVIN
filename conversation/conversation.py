@@ -138,6 +138,7 @@ class Chat:
                num_beams=1,
                min_length=1,
                top_p=1.0,
+               sampling_seed=0,
                repetition_penalty=1.0,
                length_penalty=1,
                temperature=1.0,
@@ -173,6 +174,7 @@ class Chat:
                 n_feats=n_feats,
                 temperature=temperature,
                 top_p=top_p,
+                sampling_seed=sampling_seed,
             )
 
             output_text = outputs[0].split('Responese:')[-1].strip()

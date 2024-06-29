@@ -24,7 +24,6 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Demo")
     parser.add_argument("--llama_model_path", type=str, default="./data/weights/", help="dir of pre-trained weights.")
     parser.add_argument("--llm_model", type=str, default="7B", help="the type of llm.")
-    parser.add_argument('--adapter_type', type=str, default='attn')
     parser.add_argument('--adapter_path', type=str, default='7B-checkpoint-99.pth')
     args = parser.parse_args()
 
@@ -109,8 +108,14 @@ def gradio_ask(user_message, chatbot, chat_state):
     return '', chatbot, chat_state
 
 
-def gradio_answer(chatbot, chat_state, img_list, num_beams, temperature):
-    llm_message = chat.answer(conv=chat_state, img_list=img_list, num_beams=num_beams, temperature=temperature, max_new_tokens=300, max_length=2000)
+def gradio_answer(chatbot, chat_state, img_list, temperature, top_p, sampling_seed):
+    llm_message = chat.answer(conv=chat_state,
+                              img_list=img_list,
+                              temperature=temperature,
+                              top_p=top_p,
+                              sampling_seed=sampling_seed,
+                              max_new_tokens=300,
+                              max_length=2000)
     chatbot[-1][1] = llm_message
     return chatbot, chat_state, img_list
 
@@ -128,13 +133,22 @@ with gr.Blocks() as demo:
             upload_button = gr.Button(value="Upload & Start Chat", interactive=True, variant="primary")
             clear = gr.Button("Restart")
 
-            num_beams = gr.Slider(
-                minimum=1,
-                maximum=10,
-                value=1,
+            top_p = gr.Slider(
+                minimum=0.1,
+                maximum=1.0,
+                value=0.95,
+                step=0.05,
+                interactive=True,
+                label="top_k in sampling",
+            )
+
+            sampling_seed = gr.Slider(
+                minimum=0,
+                maximum=100,
+                value=23,
                 step=1,
                 interactive=True,
-                label="beam search numbers)",
+                label="sampling_seed",
             )
 
             temperature = gr.Slider(
@@ -150,12 +164,13 @@ with gr.Blocks() as demo:
             chat_state = gr.State()
             img_list = gr.State()
             chatbot = gr.Chatbot(label='System')
-            text_input = gr.Textbox(label='User', placeholder='Type and press Enter', interactive=True)
+            prompt = "Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }."
+            text_input = gr.Textbox(label='User', placeholder='Type and press Enter', interactive=True, value=prompt)
 
     upload_button.click(upload_img, [image, text_input, chat_state], [image, text_input, upload_button, chat_state, img_list])
 
     text_input.submit(gradio_ask, [text_input, chatbot, chat_state],
-                      [text_input, chatbot, chat_state]).then(gradio_answer, [chatbot, chat_state, img_list, num_beams, temperature],
+                      [text_input, chatbot, chat_state]).then(gradio_answer, [chatbot, chat_state, img_list, temperature, top_p, sampling_seed],
                                                               [chatbot, chat_state, img_list])
     clear.click(gradio_reset, [chat_state, img_list], [chatbot, image, text_input, upload_button, chat_state, img_list], queue=False)
 

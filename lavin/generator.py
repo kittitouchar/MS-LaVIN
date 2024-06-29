@@ -40,6 +40,7 @@ class LaVIN_Generator:
         n_feats: int = 3,
         temperature: float = 1.0,
         top_p: float = 1.0,
+        sampling_seed: int = 0,
     ):
         bsz = len(prompts)
         params = self.model.params
@@ -100,7 +101,7 @@ class LaVIN_Generator:
             logits = self.model.forward(h, prev_pos)
             if temperature > 0:
                 probs = torch.softmax(logits / temperature, dim=-1)
-                next_token = sample_top_p(probs, top_p)
+                next_token = sample_top_p(probs, top_p, sampling_seed)
             else:
                 next_token = torch.argmax(logits, dim=-1)
             next_token = next_token.reshape(-1)
@@ -133,8 +134,8 @@ class LaVIN_Generator:
         return decoded, decoded_responses
 
 
-def sample_top_p(probs, p):
-    torch.manual_seed(seed=1234)
+def sample_top_p(probs, p, sampling_seed=0):
+    torch.manual_seed(seed=sampling_seed)
 
     probs_sort, probs_idx = torch.sort(probs, dim=-1, descending=True)
     probs_sum = torch.cumsum(probs_sort, dim=-1)
