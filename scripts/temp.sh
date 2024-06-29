@@ -1,0 +1,42 @@
+torchrun --nproc_per_node 8 --master_port 14345 landslide_train.py \
+    --llm_model 'llama-2-7b-chat' \
+    --llama_model_path ./data/weights/ \
+    --data_root ./data/ \
+    --max_seq_len 512 \
+    --batch_size 16 \
+    --accum_iter 1 \
+    --epochs 15 \
+    --warmup_epochs 0.2 \
+    --blr 9e-3 \
+    --weight_decay 0.02 \
+    --output_dir ./models/LaVIN-2-7Bchat-VLIT_test/\
+    --adapter_type attn\
+    --adapter_dim 8\
+    --adapter_scale 1\
+    --n_prompt 6 \
+    --prompt_format QCM-ALE \
+    --temperature 5.\
+    --visual_adapter_type router \
+    --do_pretrain
+
+
+torchrun --nproc_per_node 1 --master_port 14345 landslide_train.py \
+    --llm_model 'llama-2-7b-chat' \
+    --llama_model_path ./data/weights/ \
+    --data_root ./data/ \
+    --max_seq_len 512 \
+    --batch_size 16 \
+    --accum_iter 1 \
+    --epochs 15 \
+    --warmup_epochs 0.2 \
+    --blr 9e-3 \
+    --weight_decay 0.02 \
+    --output_dir ./models/LaVIN-2-7Bchat-VLIT_test/\
+    --adapter_type attn\
+    --adapter_dim 8\
+    --adapter_scale 1\
+    --n_prompt 6 \
+    --prompt_format QCM-ALE \
+    --temperature 5.\
+    --visual_adapter_type router \
+    --do_finetune
