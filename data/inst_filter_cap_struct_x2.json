@@ -1,0 +1,872 @@
+{
+    "all": [
+        {  
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslides,Cause : Presence of sedimentary rocks such as sandstone and mudstone, occurrence near ridges and high points, lack of a large catchment area upstream or within the drainage basin, Observation : [The picture depicts a gently sloping hillside with a river running through it, The geology of the area is relatively homogeneous, Many landslides occur in this area, all seeming to occur near the ridges and high points, Landslides tend to occur from high points near the ridges and in places where there is no large catchment area upstream or within the drainage basin], Future risk : Possibility of many small initial landslides}",
+            "image": "0.jpg",
+            "image_source": "ms",
+            "qid": "1"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Surface Collapse, Cause : Loose and fine-grained material covering the surface, Observation : [The picture depicts a collapse of a ridge, The material within the collapse does not seem to be very thick, The collapse occurred near the peak of the ridge, The loose material within the collapse is unlikely to move again, but it could flow out during heavy rain, Overall, the picture provides limited information, and it is difficult to draw definitive conclusions without additional context], Future risk : Possible recurrence of collapse if the terrain has similar groundwater levels, possible flow of loose material during heavy rain, though not expected to have significant destructive power or deposit as a thick sediment}",
+            "image": "1.jpg",
+            "image_source": "ms",
+            "qid": "2"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ",
+            "answer": "{Disaster Type : Landslide, Cause : Mountain slope with a gradient of over 30 degrees, likely resulting in a debris flow, Observation : [Photo depicts aftermath of landslide on a mountain slope in Hiroshima's Asaminami and Kita districts, resulting in a debris flow, The debris flow reached the nearby stream and likely destroyed some houses, The landslide occurred near the ridge line and flowed down the valley, spreading out in a fan shape where the slope became gentler, Forested area in the middle of the debris flow was not destroyed, but fine particles likely flowed through the gaps and out downstream, Some areas in the photo show small bumps, indicating that the debris flow likely contained rocks with a diameter of several tens of centimeters or more], Future risk : None}",
+            "image": "2.jpg",
+            "image_source": "ms",
+            "qid": "3"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Mountain Collapse,Cause : Weathering of deep-seated rocks over time, possible heavy rain, Observation : [The collapse occurred near the ridge and upper part of the slope, with bare ground flowing along the valley, The mountain has visible exposed rocks and cliffs, suggesting a geology composed of deep-seated rocks, The surface layer of weathered material is not very thick and no large boulders are included in the debris flow], Future risk : Possibility of further collapse and debris flow with another heavy rain}",
+            "image": "3.jpg",
+            "image_source": "ms",
+            "qid": "4"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Heavy rainfall, location near a deep-seated landslide area, existence of medium-hard rock formations from the pre-Neogene period, Observation : [The photo captures a landslide on a steep slope in a mountainous region, The slope has areas of both steep and gentle inclines, The specific location of the photo is on the right bank of the Miyagawa river, The specific block in the photo is part of a larger landslide block that has experienced re-sliding, Adjacent slopes are also prone to landslides but the likelihood of re-sliding is lower in those areas], Future risk : Area is prone to landslides with potential for re-sliding}",
+            "image": "4.jpg",
+            "image_source": "ms",
+            "qid": "5"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Debris Flow, Cause : Not explicitly mentioned in the paragraph, Observation : [The picture depicts the aftermath of a geological disaster in Hiroshima, Japan, A debris flow has occurred in a valley, causing sediment to reach residential areas, The distribution of sediment is wide and linear, with some areas showing signs of uplift, The terrain is shaped like a fan, a typical shape for a debris flow fan, There is no evidence of a large amount of sediment or debris remaining in the valley], Future risk : Risk of further landslides in the upstream area or in similar small streams}",
+            "image": "5.jpg",
+            "image_source": "ms",
+            "qid": "6"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Surface Collapse, Cause : Weathering materials from geological formations older than the Neogene period, Observation : [The picture shows a view of the area to the north of a previous photo, The collapse occurred in a narrow width at the upper stream of the valley, The debris flowed downstream, possibly carrying objects within the valley, The debris appears to contain pebbles with a diameter of over one meter, Collapses can occur even in shallow valleys despite the lack of a clear valley formation], Future risk : Potential for destructive force that could destroy homes upon impact if similar collapses occur in the future}",
+            "image": "6.jpg",
+            "image_source": "ms",
+            "qid": "7"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Slope Collapse, Cause : Not explicitly mentioned in the paragraph, Observation : [The photo shows a collapsed slope on a mountainous terrain in Nachikatsuura Town, Wakayama Prefecture, The slope is steep with a large bare area, a pile of debris containing large rocks, and exposed rocks and ridges, The tennis courts in the foreground were likely constructed on a steep cut slope with good quality bedrock, The debris appears to have stopped at this location and there is ongoing construction below, The surface does not appear to have a lot of weathered material, suggesting that the bedrock is exposed], Future risk : The small amount of material that flowed out of the area is unlikely to cause significant damage, and the debris is not likely to flow further downstream due to the lack of fine particles and the fact that it did not flow far initially}",
+            "image": "7.jpg",
+            "image_source": "ms",
+            "qid": "8"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslides, Debris Flow, Cause : Collapse of weathered part of the granite slope, Observation : [The picture depicts a steep mountain slope with a deep valley, There are areas of bare ground indicating potential for landslides, Soil and sand may have flowed out as evidenced by white areas, A large sand control dam is visible upstream, but sediment has accumulated and flowed downstream, causing the riverbed to be filled with soil and sand, The slope is likely composed of homogeneous rock with well-developed joints, possibly granite, Several streams and rivers appear to have been affected], Future risk : It is unclear if the current countermeasures are sufficient to prevent future similar events}",
+            "image": "8.jpg",
+            "image_source": "ms",
+            "qid": "9"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslides, Erosion, Cause : Human intervention in the form of excavation, and natural erosion, Observation : [The picture depicts a steep slope in a mountainous region with exposed rock formations in a narrow valley, The riverbed and surrounding areas show signs of landslides and erosion, There is evidence of soil and debris flow, The high-speed road along the slope has also experienced collapses, The presence of large boulders and sediment in the area], Future risk : Potential for future landslides and erosion in the area}",
+            "image": "9.jpg",
+            "image_source": "ms",
+            "qid": "10"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Potential Geological Disasters, Cause : Potential erosion, damaged sand control dam, Observation : [The picture depicts sediment flow into a stream, with some sediment still remaining in the water, The sediment has accumulated in the area where a sand control dam seems to be damaged, Another sand control dam with a slit-like structure is present, but its condition is unclear, A valley flows into the area and merges with the stream, with a smaller valley flowing in a different direction, It is possible that the smaller valley was once a river that has been eroded by the current stream], Future risk : Potential geological disasters due to erosion and the condition of the sand control dams}",
+            "image": "10.jpg",
+            "image_source": "ms",
+            "qid": "11"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Debris Flow, Cause : High rainfall, high flow velocity, Observation : [The main flow of debris occurred in the examined area, A dam was overcame by the sediment and flowed out, The sediment is distributed in a linear flow path, indicating high velocity, There are larger rocks in the sediment indicating significant destructive power, Several areas have not been cleared and are at risk of being affected by debris flow], Future risk : Potential for more debris flows in the same drainage area with similar rain conditions, debris flow may reach residential areas and farmland over considerable distance}",
+            "image": "11.jpg",
+            "image_source": "ms",
+            "qid": "12"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Deluge, Cause : None, Observation : [The disaster took place in the village of Higashimine, located in the Asakura district of Fukuoka Prefecture, The center of the calamity was the mountain of Hoshu, The calamity resembles previous disasters], Future risk : None}",
+            "image": "12.jpg",
+            "image_source": "ms",
+            "qid": "13"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : None, Cause : None, Observation : [The disaster occurred in the year 2017, The calamity struck the village of Higashimine in Asakura District, Fukuoka Prefecture, Japan, The event is captured in photograph number 0001], Future risk : None}",
+            "image": "13.jpg",
+            "image_source": "ms",
+            "qid": "14"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Collapse,Cause : Weathering of bedrock, Observation : [A deep collapse, possibly a deep-seated collapse, has occurred, Sediments are spread throughout the area, indicating the presence of flowing water, The presence of fallen trees suggests that the entire block has rotated towards the slope, Debris likely came from a deep-seated collapse of weathered bedrock, Large rocks, some several meters in diameter, are visible in the debris, The uppermost layer of the slope has likely weathered, leaving behind a layer of bedrock, The deepest layer of the collapse was likely composed of weathered bedrock that retained its structure], Future risk : None}",
+            "image": "14.jpg",
+            "image_source": "ms",
+            "qid": "15"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Collapse, Cause : Weathering and erosion of the slope, Observation : [The picture shows a mountainous terrain with a relatively steep slope leading to a flat and gently sloping surface, At the end of this surface, there is a collapsed cliff made of hard rock covering the slope below it, The valley below is relatively flat, with a river flowing through it, and lacks major sediment deposits or debris flows, A recent collapse has pushed sediment to the center of the valley], Future risk : The possibility of further movement of the remaining block is high, especially during heavy rainfall, which could cause the sediment to flow and expand the affected area. While the collapse is not likely to spread further, the sediment could still move and cause damage.}",
+            "image": "15.jpg",
+            "image_source": "ms",
+            "qid": "16"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide,Cause : High groundwater pressure due to heavy rain, Observation : [The collapsed area appears to have a cliff that is several meters thick and likely formed a landslide, The range of the collapse and the covered area of the debris is estimated, The area where the trees are still standing does not appear to have experienced a deep collapse, The flow direction of the debris is evident from the alignment of the logs, The collapse likely originated from the end of a ridge or along the ridge, There is a road near the collapsed area],Future risk : The area is prone to landslides and debris flows due to the repeated occurrence of such events}",
+            "image": "16.jpg",
+            "image_source": "ms",
+            "qid": "17"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Mountain Slope Collapse, Cause : Possibly rain, though the area is not one where surface water typically gathers. Groundwater accumulation and influence from man-made structures might have also played a role, Observation : [The collapse reached quite far down, possibly up to the lower residential area, It was not a typical landslide but more like a mudflow due to the large amount of surface soil, There are no large boulders visible, but there are man-made structures such as a power plant and a structure leading to a building below, The area is not a clear valley but more like a ridge with shallow valleys where weathered material may have accumulated, The area may have been covered by lava or volcanic rock, and there may have been a buried valley before the lava covered it, The man-made structure may have played a role, but the collapse occurred a little away from it, The area seems to have had small-scale collapses and diverted water from the slope], Future risk : Similar collapses are unlikely to occur in the surrounding area, especially on the smooth slope on the left side of the photo. However, the valley may have had some debris flows in the past}",
+            "image": "17.jpg",
+            "image_source": "ms",
+            "qid": "18"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide or Collapse, Cause : None, Observation : [The scene reveals a collapse that has reached even this far, with debris scattered about, There appears to be a building above and a facility that was artificially cut towards this direction, It seems to resemble a power plant, The collapse seems to have occurred at the tip of a ridge, In the distance, a mountain can be seen, but it is difficult to discern due to overlapping, It appears to have a wide base, resembling an old volcano, but it is unclear],Future risk : None}",
+            "image": "18.jpg",
+            "image_source": "ms",
+            "qid": "19"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide or Collapse,Cause : None, Observation : [There is a collapsed slope on the right bank of the dam lake, and there are many other collapses in the area, The terrain appears relatively flat with consistent ridge heights and shallow rivers flowing through it, The geological structure is not complex, and it is likely composed of sedimentary rocks such as sand and mud with a strength similar to soft rock, The collapses appear to be surface collapses occurring at the head of the ridges and on thin cliffs, The thickening of the side walls will be examined in more detail in the close-up view, Overall, the geological structure of the area is similar, with similar slopes, inclines, and ridges], Future risk : None}",
+            "image": "19.jpg",
+            "image_source": "ms",
+            "qid": "20"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide or Collapse, Cause : 2016 Kumamoto earthquake, Observation : [The collapse is known for washing away the famous Aso Ohashi bridge that was supposed to be located here, The collapse appears to have originated from the head of the ridge and reached the river, but there doesn't seem to be any debris piled up on the opposite bank, The right bank slope seems to have collapsed entirely, and there is also evidence of soil erosion from the area where the trees are leaning, The collapse has caused damage to the road, and there is evidence of soil erosion in the area, The crack in the ground and the shadowy streaks suggest that the surface is tilted, The area lacks clear valleys, and there are no measures in place to prevent soil erosion], Future risk : The possibility of further collapse is high, especially during strong aftershocks or heavy rainfall}",
+            "image": "20.jpg",
+            "image_source": "ms",
+            "qid": "21"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide or Collapse, Cause : Possibly an earthquake, Observation : [There is a collapsed area on the right bank of the river, where the entire slope seems to have collapsed, The bridge over the river appears to be damaged, and the road extending from it is also damaged and tilted towards the river due to the visible collapsed area, The slope continues in this direction, with bare patches of land where vegetation is absent, Evidence suggests the collapse may have occurred during the same earthquake that caused the collapse of the vegetation-covered soil blocks, The sandbags in the area appear to be relatively new, but the collapse likely occurred before the earthquake, and the soil and sand have flowed out since then, The slope on the other side of the collapsed area is a gently sloping surface covered with volcanic deposits, while the slope facing this side is steep and exposed to volcanic deposits], Future risk : The collapsed slope is prone to further collapse during heavy rain or earthquakes, as it is a slope where weathering materials have accumulated and lacks a well-developed valley}",
+            "image": "21.jpg",
+            "image_source": "ms",
+            "qid": "22"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological Disaster, Cause : Heavy Rainfall, Observation : [The disaster took place at the confluence of two rivers, where numerous houses were submerged in water and sediment, The riverbed is composed of gravel, with a gradient of 1000/3 or 1000/4, and the size of the gravel is estimated to be over 30cm, The main road along the river is also buried under sediment, The houses located on the riverbank are also submerged, indicating an unusual rise in water level and sediment flow, The slope of the mountain is natural, and landslides have occurred in groups, The building in the picture appears to be a multi-story structure, but the first floor is completely submerged, The water level seems to have risen above the height of the building's foundation, and the surrounding ground is covered with debris, The agricultural land on the terraced slope has also been covered with sediment, and some houses have been destroyed], Future risk : None}",
+            "image": "22.jpg",
+            "image_source": "ms",
+            "qid": "23"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Sediment Accumulation, Cause : Possibly Heavy Rain and Weathered Granite Rocks, Observation : [The picture shows a wide area of sediment accumulation in the upstream side of a valley, filled with gravel deposits, The valley has been used for rice paddies and residential areas, indicating that it was already a wide and deep valley before the disaster, The frequent occurrence of small-scale surface collapses suggests that the region is composed of granite or similar rock types with weathered layers that cause surface collapses, The large amount of wood debris and gravel in the river suggests that there may be larger collapses upstream, The high water level in the riverbed and the presence of residential areas with low elevation make them vulnerable to flooding], Future risk : Flooding during heavy rain in low elevation residential areas}",
+            "image": "23.jpg",
+            "image_source": "ms",
+            "qid": "24"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological Disaster, Cause : Possibly Thick Weathering Layer at the Ridge Head, Observation : [The picture shows a collapse that occurred in a wide and shallow valley, The collapse started from just below the road and has flowed into the river, The terrain has several developed valleys, and the slope is distributed with a slight inclination, The head of the ridge may have had a thick weathering layer, making it susceptible to collapse, The surrounding vegetation is mostly coniferous, but some areas have different vegetation, indicating possible past landslides], Future risk : Unclear, with no significant damage to the surrounding area and no information on whether similar collapses will occur again}",
+            "image": "24.jpg",
+            "image_source": "ms",
+            "qid": "25"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Large-scale Geological Disaster, Cause : High Permeability of the Rock Formations, Observation : [The picture shows a clear landslide cliff with a height estimated to be over 10 meters, The collapse involves both surface and deep rock layers, The surrounding slopes show signs of erosion and instability, The formation of a natural dam and subsequent flooding has created a new channel, potentially causing further erosion and instability, The texture and color of the exposed rock formations helped the expert determine the extent of the landslide and the boundaries of the natural dam], Future risk : Possibility of further movement during heavy rainfall and additional erosion due to the new channel formation}",
+            "image": "25.jpg",
+            "image_source": "ms",
+            "qid": "26"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Slope Collapse, Cause : Possible differences in geological structure, such as a flow plate structure or a fault with a slope inclination, Observation : [The picture shows a slope with a similar inclination to the collapsed slope, visible in the distance towards the back of the Akadani River, The right bank of the river has a smooth slope with a large incline, while the left bank has several small streams that create a symmetrical terrain, The collapsed sediment has blocked the river channel, forming a natural dam, The collapsed slope's original terrain is unknown, but it is possible to imagine what kind of terrain it was by looking at other photos, The difference in terrain between the left and right banks of the Akadani River may be due to differences in geological structure, such as a flow plate structure or a fault with a slope inclination], Future risk : The adjacent area that did not collapse may also be constrained by the same geological structure, making it a potential candidate for the next collapse. There may have been several collapses in the past, and the collapsed areas may be found in this region}",
+            "image": "26.jpg",
+            "image_source": "ms",
+            "qid": "27"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : None, Cause : None, Observation : [A shallow valley becomes visible, as well as a distinct valley on the adjacent slope, There appears to be a valley-like formation resembling a crack, The surface of the terrain is jagged, suggesting it may be bedrock rather than sediment, This is supported by the lack of texture and unevenness typically seen in sediment, as well as the absence of continuous structures], Future risk : None}",
+            "image": "27.jpg",
+            "image_source": "ms",
+            "qid": "28"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : None, Cause : Possibility of degraded rock causing gravity deformation and displacement, Observation : [A shallow crack in the eastern part of a collapsed area, The cliff where the landslide occurred reveals visible rock formations, and the surface layer has been eroded, with thick sediment accumulated, Most of the sediment that should have moved has already done so, and there are not many remaining blocks to move, The entire area is dominated by rock formations], Future risk : None}",
+            "image": "28.jpg",
+            "image_source": "ms",
+            "qid": "29"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Massive landslide, Cause : None, Observation : [A massive collapse has occurred on the ridge, reaching the river and creating a natural dam, The upstream side is flooded, and a natural dam has formed along the entire width of the collapse, The collapse appears to have occurred from the head of the ridge, leaving a jagged surface of exposed bedrock, The vegetation remains in some areas, but the surface is covered in a thin layer of debris, The collapsed material is likely composed of crushed and weathered bedrock, with no evidence of large boulders, A bowl-shaped cliff face and a relatively stable surface], Future risk : None}",
+            "image": "29.jpg",
+            "image_source": "ms",
+            "qid": "30"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide and creation of a natural dam, Cause : Likely differences in geology, geological structure, and degree of surface weathering, Observation : [The embankment can be seen, extending downstream from just below the collapsed downstream edge, The embankment is about 10 meters in height, The right bank of the valley has collapsed, while the left bank is clearly defined with a distinct valley pattern, The right bank slope may have good permeability as a rock formation, allowing water to penetrate and preventing the formation of surface valleys, The surrounding area of the landslide does not appear to have a large amount of accumulated debris], Future risk : There is a possibility that vegetation-covered debris could move downstream during heavy rainfall. It is unlikely that another landslide of the same scale will occur, but the stability of the natural dam cannot be determined from this photo alone. Further observation of downstream water flow is necessary to make a judgment}",
+            "image": "30.jpg",
+            "image_source": "ms",
+            "qid": "31"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Earthquake-induced landslide, Cause : Earthquake, Observation : [The focal point of the image is the immense collapse of the slope directly ahead], Future risk : None}",
+            "image": "31.jpg",
+            "image_source": "ms",
+            "qid": "32"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological disaster (landslides and sediment flow), Cause : None, Observation : [The collapse occurred at the head of a valley, Sediment appears to have flowed into residential areas, Similar collapses occurred in various places, causing landslides, The mountain Erosion of the riverbanks has caused the loss of sediment deposits from previous landslides], Future risk : Given the history of landslides and sediment flow in the area, similar events may occur in the future}",
+            "image": "32.jpg",
+            "image_source": "ms",
+            "qid": "33"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Debris flow, Cause : Surface weathering material has collapsed and flowed down the valley with water, Observation : [Valley with visible water flow and no large boulders or rockfalls is seen, Debris flow contains small gravel, and there are some logs present, indicating that trees were likely uprooted and carried downstream, The extent of the sediment flow is wider than what is visible in the picture, but it does not appear to have caused significant damage to surrounding structures, Similar collapse areas can be seen in the distance, and the sediment in the valley suggests that there was a collapse higher up in the valley], Future risk : Given the terrain and geological conditions, similar events might be a common occurrence in the area}",
+            "image": "33.jpg",
+            "image_source": "ms",
+            "qid": "34"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Unclear in the text, Observation : [The collapse took the form of a steep slope, with a red-colored landslide cliff that has a slightly changing slope, The area has a valley-like shape, and the soil is already submerged in water, creating a natural dam that has caused overflow, The terrain has evidence of an old landslide, and the moving soil block that formed the gentle slope may move again], Future risk : It is important not to leave the area unattended, as even surface soil can flow and cause further damage during rainfall}",
+            "image": "34.jpg",
+            "image_source": "ms",
+            "qid": "35"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Deep-seated landslide and weathering of rock formations, Observation : [The picture shows a slope with exposed rock formations that appear to have weathered, The top layer of the slope has eroded and accumulated sediment, There is also a road that appears to have been affected by the landslide], Future risk : It is unlikely that the accumulated sediment will suddenly collapse and cause a catastrophic flow}",
+            "image": "35.jpg",
+            "image_source": "ms",
+            "qid": "36"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslides, Cause : Weathering of the underlying rock and multiple collapses, Observation : [There have been multiple collapses resulting in landslides that have covered the road, The landslides likely originated from the collapsed areas and flowed down into the valley, The vegetation on the slope has been artificially planted, and there are no large boulders visible in the landslide debris], Future risk : It is possible that similar collapses could occur in the future in this area, with similar scale and depth}",
+            "image": "36.jpg",
+            "image_source": "ms",
+            "qid": "37"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Soil and sand spill, Cause : Collapse of a nearby area, Observation : [The soil and sand from the nearby collapsed area have spilled out into the valley, The valley is obscured from view due to the spill, The soil and sand have covered the surrounding roads], Future risk : None}",
+            "image": "37.jpg",
+            "image_source": "ms",
+            "qid": "38"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide due to earthquake, Cause : Kumamoto earthquake in 2016, Observation : [A road is covered by a landslide on the mountain side of a slope where a retaining wall had collapsed, The river side of the slope also appears to have collapsed, The exposed bedrock visible indicates that the foundation of the retaining wall was made of hard bedrock, A crack in the lava layer, likely a result of the earthquake, is visible, The collapse appears to be a surface landslide rather than a deep-seated one, The head of the cliff may have cracks that could potentially lead to further collapse, The accumulated debris is made up of small rock fragments, suggesting that the bedrock was originally rounded and easily separated, The larger boulders that remain are likely part of a lava layer], Future risk : Potential further collapse due to existing cracks at the head of the cliff}",
+            "image": "38.jpg",
+            "image_source": "ms",
+            "qid": "39"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide due to earthquake, Cause : Kumamoto earthquake in 2016, Observation : [The main area of collapse is quite wide, with landslides flowing into the river and partially burying the riverbed, Open cracks and damage to the surface can be seen, possibly indicating fault lines or other geological structures, White lines on the road surface are shifted, suggesting a fault line rather than collapse, The layer structure of the ground is visible, with parallel lines indicating different layers of earth, The area with vertical cracks and columnar joints suggests the presence of volcanic rock, The railway tunnel appears to have remained intact, with the surface layer of earth sliding down the steep slope and carrying away some structures, The surface layer of earth appears to have fractured and rotated, creating a block-like structure], Future risk : None}",
+            "image": "39.jpg",
+            "image_source": "ms",
+            "qid": "40"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide and Debris flow, Cause : None, Observation : [The debris flow has reached this side, indicating that the river channel was partially blocked, Signs of collapse on the opposite bank, but it seems to be relatively small, The downstream area shows a layered structure with exposed bedrock and developed joints, The geological structure here is relatively flat with a gentle slope, and it does not seem to have thick sediment or bedrock that could slide down steep slopes, The crack seen at the head of the collapse is not clear from this photo, but it may be around here, It is possible that the head of the collapse was a raised embankment or a cultivated field], Future risk : Secondary sliding may occur along this crack, so emergency measures such as adding water may be necessary}",
+            "image": "40.jpg",
+            "image_source": "ms",
+            "qid": "41"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : None, Cause : Potential fault line, Observation : [The picture depicts a construction site where it seems that some kind of land development is taking place, The area appears to be a depression, and it is possible that it was filled with soil for agricultural development, There may also be a fault line in this area, which could have caused the road cracks], Future risk : The terrain suggests that there may be a fault line in this area, which could potentially lead to geological disasters in the future}",
+            "image": "41.jpg",
+            "image_source": "ms",
+            "qid": "42"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : The soil used to fill the valley may have slid and caused the crack, Observation : [The road's alignment is located where a crack has occurred, The area around the road appears to be a valley, and it seems that the road was built on a filled-in valley, The cliff that has collapsed is about 5 meters high and can be considered a landslide cliff, The head of the landslide cliff is steep, but it does not seem to extend deep underground], Future risk : None}",
+            "image": "42.jpg",
+            "image_source": "ms",
+            "qid": "43"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : The collapse of the left bank slope of the valley, Observation : [The photo shows a collapsed area in Shiiba Village, Miyazaki Prefecture, The collapsed area has a sharp outline, and it is unclear if the river channel is blocked, The terrain is a steep mountainous river valley, and there are some areas with thin vegetation due to old landslides, The collapsed soil has likely already flowed downstream, and there is no evidence of recent landslides], Future risk : The collapsed area is not likely to expand significantly, and there is no indication of a large-scale landslide in the near future}",
+            "image": "43.jpg",
+            "image_source": "ms",
+            "qid": "44"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological disaster, Cause : Erosion of a slope, Observation : [The picture depicts the aftermath of a disaster that occurred in 2011 in the city of Gojo, Nara Prefecture, A large collapse has occurred, which appears to have created a significant landslide cliff, The area below the collapse is filled with debris, which has likely flowed into the nearby river, The debris is still being eroded by the river, The picture also shows a house located on a slope, which may have been created by a previous landslide], Future risk : The debris may cause further blockages in the future and the area is prone to slope disasters}",
+            "image": "44.jpg",
+            "image_source": "ms",
+            "qid": "45"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Cliff collapse, Cause : Weathered rock formations, accumulation of sediment, erosion by river, and possibly the presence of a large geological structure, Observation : [There is a clear boundary where a cliff has collapsed, The area behind the collapse has accumulated sediment, and the river has eroded it, The sediment might have collapsed and filled the riverbed, causing it to overflow, The opposite bank may have also been affected, Protective measures have been taken due to previous collapses in the area], Future risk : The geological structure of the area may make it prone to similar disasters in the future}",
+            "image": "45.jpg",
+            "image_source": "ms",
+            "qid": "46"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological disaster (landslide and debris flow), Cause : Weathered material from the source of the valley collapsing, Observation : [Soil and debris flowed down a small valley and reached a settlement, Debris flow contained large logs and boulders over 1 meter in size, Source of the debris flow appears to be a coniferous forest with a not too steep slope, Debris has buried the settlement up to a higher point on the left bank of the valley indicating high flow rate and fluidity, Surrounding terrain has a different vegetation pattern, possibly due to past landslides and debris flows], Future risk : Debris may continue to flow down from where it has accumulated and the debris that remains on the surface may also flow down, but the disaster area is not expected to expand significantly}",
+            "image": "46.jpg",
+            "image_source": "ms",
+            "qid": "47"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : None, Cause : Significant weathering of the mountain and possible past landslide or debris flow, Observation : [Newly planted forest and well developed valley are visible up to the top of the mountain, Presence of protruding rocky reefs suggests the mountain is made of moderately hard rock, Collapsed area does not reveal a clear rock structure, indicating significant weathering of the entire mountain], Future risk : Possible recurrence of a landslide or debris flow similar to any past event}",
+            "image": "47.jpg",
+            "image_source": "ms",
+            "qid": "48"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological disaster, Cause : Uncertain, but poor drainage may have contributed, Observation : [Road edge is collapsing and the slope on the mountain side appears to shift, Exposed bare areas on the mountain slope indicate further collapse, Collapsed soil, sediment and weathered rock are visible in the slide area, The rock appears to be highly weathered and lacks large, hard structures, Material below the slide is composed of weathered rock with few large boulders, Slide flow does not appear to be highly mobile, likely due to underlying geology, Collapse does not appear to be deep-seated and there are no signs of cracks or other concerning features], Future risk : Possible further flow, but the collapse is not likely to significantly expand}",
+            "image": "48.jpg",
+            "image_source": "ms",
+            "qid": "49"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Slope collapse, Cause : Artificial modification of the slope and environmental conditions, Observation : [A facility is built on a ridge that serves as a watershed, There is evidence of a collapse on the opposite side of the ridge, which is the source of a downstream stream, The collapse is affecting the road on the mountain side, The slope has been artificially modified, and there are small steps visible, indicating it may have been filled, The same type of collapse is occurring in other areas, and the generated soil and sand have flowed onto the road, The facility is built on a large gentle slope, which may have been caused by soil and sand supply from upstream, The surface collapse is a recurring event in this slope and it has created a gentle slope that has filled shallow valleys], Future risk : This type of collapse is likely to occur repeatedly in the long term due to environmental conditions}",
+            "image": "49.jpg",
+            "image_source": "ms",
+            "qid": "50"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological disasters (including bridge collapse and landslides), Cause : Possible active fault line and volcanic activity (suggested by sediment structure), Observation : [Several geological disasters have occurred in the area, The Aso Bridge has collapsed, There have been landslides on the right bank of the river with cracks indicating potential expansion of the slope, Cracks are also visible in the rice fields and bare ground, The sediment structure suggests the presence of volcanic lava or pyroclastic flow, The road has been damaged and shifted due to landslides, with cracks indicating potential continued collapse, Some collapse has been observed at the power plant, but the extent of the damage is unclear], Future risk : The area is at risk for further geological disasters and caution should be taken}",
+            "image": "50.jpg",
+            "image_source": "ms",
+            "qid": "51"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type :None, Cause : None, Observation : [The photograph is of a disaster in Sakari, Ichinomiya-cho, Aso City], Future risk : None}",
+            "image": "51.jpg",
+            "image_source": "ms",
+            "qid": "52"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Earthquake and Landslides, Cause : Kumamoto earthquake and potentially specific layers or rock types that are more prone to collapse due to similar weathering conditions or crack patterns., Observation : [Collapsed slopes in the foreground appear to have new landslides, with distinct and somewhat damp soil., The presence of sandbags suggests that some of the landslides may be old and have expanded., The bright area in the foreground is likely a pasture or semi-natural grassland., The slope is gentle and smooth, and it is likely part of the plateau of the pyroclastic flow of Aso., The exposed strata on the caldera wall are composed of volcanic rocks, including lava, pyroclastic flow, and volcanic ash layers.], Future risk : The slope may continue to expand, and future earthquakes could cause further landslides.}",
+            "image": "52.jpg",
+            "image_source": "ms",
+            "qid": "53"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Possible loosening of the soil due to an earthquake., Observation : [The picture shows a slope that has collapsed, but it is not a deep-seated landslide., The surface layer has eroded, causing a thin layer to collapse, exposing the bedrock., The area may have experienced previous collapses, as evidenced by the different vegetation., The collapsed area may contain buried trees that could become driftwood if moved by rain., The presence of a sandbag dam downstream suggests that this area is prone to repeated collapses.], Future risk : Repetition of collapses, potentially moving buried trees by rain that could become driftwood.}",
+            "image": "53.jpg",
+            "image_source": "ms",
+            "qid": "54"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Triggered by accumulation of debris from previous landslides and possibly significant weathering of altered volcanic or igneous rocks., Observation : [The picture depicts a collapsed area where the exposed rock formations indicate the presence of a landslide cliff., The majority of the soil and debris has settled at the base of the slope, with some finer particles flowing beyond the emergency retaining wall and reaching the edge of a nearby building., The geological composition of the area suggests the presence of altered volcanic or igneous rocks, which have undergone significant weathering., The vegetation in the area varies, with some sections featuring coniferous trees and others broadleaf trees. The differences in vegetation may indicate variations in soil composition or the timing of reforestation efforts., The slope may have experienced previous landslides, and the current collapse may have been triggered by the accumulation of debris from earlier events., The area may have been a gently sloping riverbank before the landslides, and the current facility was built on the right bank of the river.], Future risk : Soil and debris from the collapse may continue to move downhill, with the extent of future movement depending on the intensity and duration of rainfall.}",
+            "image": "54.jpg",
+            "image_source": "ms",
+            "qid": "55"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : Possibly due to a layer of easily slidable material, though exact cause is unclear., Observation : [The slope collapsed, causing a significant amount of soil and debris to flow down., Heavy machinery is seen working in the area, indicating the soil is quite fluid., The debris has buried everything in its path, including houses., The collapse appears to have been caused by a highly fluid landslide of fine-grained material, rather than large boulders., The slope was not very steep, and the resulting cliff is steep and clear., The terrain after the landslide is a smooth, flat surface, suggesting that the underlying layers of the slope were exposed., The speed of the landslide was high, causing significant damage to the houses in its path., The debris reached a height of over 10 meters, indicating a high flow rate.], Future risk : None}",
+            "image": "55.jpg",
+            "image_source": "ms",
+            "qid": "56"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslides, Cause : None, Observation : [The picture depicts a mountainous slope facing the coast with visible exposed rocks and several small landslides scattered throughout the area., The landslides appear to have originated from the valley heads and are not of significant size., The depth of the landslides is unclear, but they do not seem to have altered the terrain significantly., The exposed rocks suggest that the area is composed of weathered deep-seated rocks., The slope has a mixture of steep and gentle gradients, and there are signs of sediment accumulation, possibly from previous landslides., The sediment appears to have been carried away by the tides, making it difficult to determine the exact nature of the terrain., The picture does not show any significant accumulation of landslide debris, and it appears that the debris has flowed down to the coast.], Future risk : The risk of landslides in the future is high, especially in areas with similar terrain.}",
+            "image": "56.jpg",
+            "image_source": "ms",
+            "qid": "57"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Highly fluid landslide, Cause : The disaster may have been caused by melting snowwater entering the slip block and increasing the pore water pressure., Observation : [There is a clear slip cliff present with cracks above it, indicating a high likelihood of expansion., There are also traces of water flow within the slip cliff, suggesting a relatively quiet flow rather than a rolling mass., The snow on the surface is fragmented but still retains its shape, indicating a lack of destructive force., The slip blocks move in a protruding manner at the end., It is unlikely that the disaster was caused by heavy rain, as there is no evidence of material flowing far from the end of the sediment., The flat surface above the slip is a concern, as it appears to have been artificially excavated., The road crossing the head of the slip is also a concern, as it may have collected meltwater., The possibility of this being a watershed area cannot be ruled out., The terrain of the area suggests that it may have been the most likely place for water to collect., Small landslides may have occurred anywhere on the slope., The sediment of this landslide is highly fluid.], Future risk : It is possible that the landslide may continue to flow if more water enters or if it rains.}",
+            "image": "57.jpg",
+            "image_source": "ms",
+            "qid": "58"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Surface collapse, Cause : It is surface weathering that has collapsed., Observation : [There is evidence of a landslide but not deep bedrock., The debris is covered in fine particles rather than large rocks., The collapse occurred near a small valley, and there are signs of gully development., The debris has reached the residential area below, but there is no evidence of damage to the structures., The debris appears to have flowed into a small river that leads to the sea, and there are logs stuck in the bridge., The collapse likely originated from the top of the ridge, near the upper end of the valley., There is evidence of a similar collapse on the opposite side of the ridge., The area where the house is built is a low-lying area formed by the sediment deposited by the river., The valley has likely experienced past landslides, but there is no clear evidence of it., The valley is a small, narrow, and terraced lowland that is a few meters high.], Future risk : It is possible that the area could be flooded if the river experiences a significant increase in water flow.}",
+            "image": "58.jpg",
+            "image_source": "ms",
+            "qid": "59"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Collapse and mudslides, Cause : None, Observation : [The collapse occurred near the ridge, and the soil and sand flowed into the area., Similar collapses have occurred in other areas with similar terrain, resulting in mudslides flowing into the low-lying rivers., The overall terrain is not jagged, but rather has a weathered surface layer., There are deep valleys with many rocks, but the terrain is similar to the observation point., Therefore, the geology is likely similar as well.], Future risk : None}",
+            "image": "59.jpg",
+            "image_source": "ms",
+            "qid": "60"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Large collapse, Cause : Infiltration of rainwater which increased the pore pressure and caused the weathered bedrock to collapse, Observation : [A large collapse has occurred, with weathered bedrock collapsing to a depth of over 10 meters., The boundary of the collapse reveals exposed bedrock, which is also visible in other areas., The presence of vegetation suggests that some material from the collapse remains on the slope., The surrounding terrain features a relatively clear valley with a consistent slope, indicating the presence of low-permeability bedrock., The depth of the collapse can be determined by the presence of shadows, and the color of the exposed bedrock suggests that it is relatively shallow.], Future risk : None}",
+            "image": "60.jpg",
+            "image_source": "ms",
+            "qid": "61"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Landslide, Cause : 2016 Kumamoto earthquake and presence of a fault, Observation : [An area where soil and sand have flowed out, reaching the river through a railway and a major road., The road appears to have been cut off, and the remaining abutments suggest that the Aso Ohashi bridge was once located here., Several landslides can be seen on the left bank of the river flowing on this side., The building in the picture is situated on a cliff, with cracks visible on the slope, indicating the possibility of further expansion., The slope also features several exposed rocks, and the lower part of the slope is covered with new soil and sand., The exposed rocks appear to be a series of overlapping layers of solid rocks that have become bluish in color, possibly formed by volcanic lava from Mount Yoka., The cracks in the area suggest the presence of a fault, which may have caused the continuous cracks on the surface.], Future risk : The presence of a fault and visible cracks on the slope indicates a risk of further landslides.}",
+            "image": "61.jpg",
+            "image_source": "ms",
+            "qid": "62"
+        },
+        {  
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslides, Cause: Presence of sedimentary rocks such as sandstone and mudstone, occurrence near ridges and high points, lack of a large catchment area upstream or within the drainage basin, Observation: [The provided image portrays a gently sloping hillside with a river flowing through it. The geological composition of the area is relatively homogeneous. There have been numerous landslides observed in this region, all predominantly occurring near the ridges and high points. Landslides tend to transpire from elevated areas along the ridges and in locations lacking a substantial catchment area upstream or within the drainage basin.], Future risk: There is a possibility of multiple small initial landslides.}",
+            "image": "0.jpg",
+            "image_source": "ms",
+            "qid": "63"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Surface Collapse, Cause: Presence of loose and fine-grained material covering the surface, Observation: [The provided image displays a ridge collapse. The material involved in the collapse appears to be relatively thin. The collapse took place near the summit of the ridge. Although the loose material within the collapse is not expected to move again, it may flow out during periods of heavy rain. Overall, the picture offers limited information, making it challenging to draw definitive conclusions without additional context.], Future risk: There is a possibility of a recurrence of collapse if the terrain experiences similar groundwater levels. Additionally, during heavy rain, there may be a flow of loose material, although it is not anticipated to possess significant destructive force or accumulate as a thick sediment.}",
+            "image": "1.jpg",
+            "image_source": "ms",
+            "qid": "64"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ",
+            "answer": "{Disaster Type: Landslide, Cause: Steep mountain slope with a gradient exceeding 30 degrees, potentially resulting in a debris flow, Observation: [The provided photograph depicts the aftermath of a landslide on a mountain slope located in Hiroshima's Asaminami and Kita districts. The landslide triggered a debris flow that reached a nearby stream, potentially causing damage to houses. The landslide originated near the ridge line and cascaded down the valley, expanding into a fan shape as the slope became less steep. The forested area within the debris flow remained unharmed, although fine particles likely flowed through gaps and downstream. Certain areas in the photo exhibit small mounds, indicating the presence of rocks with a diameter of several tens of centimeters or larger within the debris flow.], Future risk: None}",
+            "image": "2.jpg",
+            "image_source": "ms",
+            "qid": "65"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Mountain Collapse, Cause: Gradual weathering of deep-seated rocks over time, potential influence of heavy rain, Observation: [The collapse event transpired near the ridge and upper section of the slope, resulting in the flow of exposed ground along the valley. The mountain exhibits visible exposed rocks and cliffs, indicating the presence of deep-seated rock formations. The surface layer of weathered material appears to be relatively thin, and no significant boulders are observed within the debris flow.], Future risk: There is a possibility of additional collapses and debris flows in the event of heavy rainfall.}",
+            "image": "3.jpg",
+            "image_source": "ms",
+            "qid": "66"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Intense rainfall, proximity to a region with previous deep-seated landslides, presence of medium-hard rock formations from the pre-Neogene era, Observation: [The provided image depicts a landslide occurrence on a steep slope within a mountainous area. The slope exhibits sections of both steep and gentle inclines. The specific location captured in the photo is situated on the right bank of the Miyagawa river. The block shown in the photo is a component of a larger landslide block that has experienced re-sliding. Adjacent slopes in the vicinity are also susceptible to landslides, although the probability of re-sliding in those areas is comparatively lower.], Future risk: The region is prone to landslides, with the potential for re-sliding.}",
+            "image": "4.jpg",
+            "image_source": "ms",
+            "qid": "67"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Debris Flow, Cause: Not explicitly specified in the paragraph, Observation: [The provided image portrays the aftermath of a geological disaster that took place in Hiroshima, Japan. A debris flow transpired within a valley, resulting in the sediment reaching residential areas. The distribution of sediment appears extensive and follows a linear pattern, with certain areas displaying signs of uplift. The terrain exhibits a fan-shaped configuration, which is a characteristic shape associated with debris flow fans. No substantial evidence is found indicating the presence of a significant volume of sediment or debris remaining within the valley.], Future risk: There is a potential for further landslides to occur in the upstream region or in similar small streams.}",
+            "image": "5.jpg",
+            "image_source": "ms",
+            "qid": "68"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Surface Collapse, Cause: Presence of weathering materials derived from geological formations predating the Neogene period, Observation: [The provided image depicts a view of the area situated north of a previous photograph. The collapse event transpired within a narrow section at the upper stream of the valley, resulting in downstream flow of debris that potentially carried objects within the valley. The debris appears to include pebbles with a diameter exceeding one meter. It is worth noting that collapses can transpire even in shallow valleys, despite the absence of a distinct valley formation.], Future risk: If similar collapses occur in the future, there is a potential for significant destructive force capable of causing damage to homes upon impact.}",
+            "image": "6.jpg",
+            "image_source": "ms",
+            "qid": "69"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Slope Collapse, Cause: Not explicitly stated in the paragraph, Observation: [The provided photograph exhibits a collapsed slope situated within a mountainous terrain in Nachikatsuura Town, Wakayama Prefecture. The slope displays a steep inclination, a sizable bare area, a pile of debris containing large rocks, and visible exposed rocks and ridges. The foreground showcases tennis courts that were possibly constructed on a steep cut slope featuring bedrock of good quality. The debris seems to have halted at this location, and ongoing construction is observed below. The surface does not appear to contain a substantial amount of weathered material, implying that the bedrock is exposed.], Future risk: The limited amount of material that flowed out from the area is unlikely to cause significant damage, and the debris is not expected to continue flowing downstream due to the absence of fine particles and its limited initial distance of flow.}",
+            "image": "7.jpg",
+            "image_source": "ms",
+            "qid": "70"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslides, Debris Flow, Cause: Collapse of the weathered section of the granite slope, Observation: [The provided image showcases a steep mountain slope intersected by a deep valley. There are areas of exposed ground indicating the potential for landslides. The presence of white areas suggests the flow of soil and sand. An upstream sand control dam is visible, but sediment has accumulated and subsequently flowed downstream, leading to the filling of the riverbed with soil and sand. The slope likely consists of uniform rock with well-developed joints, possibly granite. Multiple streams and rivers appear to have been impacted.], Future risk: It remains uncertain if the existing countermeasures are adequate in preventing similar events from occurring in the future.}",
+            "image": "8.jpg",
+            "image_source": "ms",
+            "qid": "71"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslides, Erosion, Cause: Human intervention through excavation activities and natural erosion, Observation: [The provided image illustrates a steep slope situated within a mountainous region, featuring exposed rock formations in a narrow valley. Signs of landslides and erosion are evident in the riverbed and surrounding areas. There are indications of soil and debris flow, and the high-speed road along the slope has also encountered collapses. The presence of large boulders and sediment is notable in the area.], Future risk: The area carries a potential risk for future landslides and erosion occurrences.}",
+            "image": "9.jpg",
+            "image_source": "ms",
+            "qid": "72"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Potential Geological Disasters, Cause: Potential erosion and damage to the sand control dam, Observation: [The provided image showcases sediment flowing into a stream, with some sediment still present in the water. The sediment accumulation is observed in an area where a sand control dam appears to have incurred damage. Another sand control dam with a slit-like structure is also present, although its condition remains uncertain. A valley converges into the area and joins the stream, while a smaller valley flows in a different direction. It is plausible that the smaller valley was once a river that has been eroded by the current stream.], Future risk: There is a potential for geological disasters to occur due to ongoing erosion and the condition of the sand control dams.}",
+            "image": "10.jpg",
+            "image_source": "ms",
+            "qid": "73"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Debris Flow, Cause: Intense rainfall and high flow velocity, Observation: [The examined area experienced a primary debris flow event. The sediment overwhelmed a dam and flowed outwards. The distribution of sediment follows a linear path, suggesting the occurrence of high velocity. Larger rocks within the sediment indicate considerable destructive force. Several areas remain uncleared and are at risk of being impacted by subsequent debris flows.], Future risk: There is a potential for additional debris flows to transpire in the same drainage area under similar rainy conditions. These debris flows have the potential to extend over a considerable distance, potentially reaching residential areas and farmland.}",
+            "image": "11.jpg",
+            "image_source": "ms",
+            "qid": "74"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Deluge, Cause: Not specified, Observation: [The calamity unfolded in the village of Higashimine, situated within the Asakura district of Fukuoka Prefecture. The focal point of the disaster was the Hoshu mountain. The calamity exhibits similarities to past disasters.], Future risk: None}",
+            "image": "12.jpg",
+            "image_source": "ms",
+            "qid": "75"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: None, Cause: None, Observation: [The calamity unfolded in the year 2017, impacting the village of Higashimine in the Asakura District of Fukuoka Prefecture, Japan. The event has been documented and is represented by photograph number 0001.], Future risk: None}",
+            "image": "13.jpg",
+            "image_source": "ms",
+            "qid": "76"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Collapse, Cause: Weathering of bedrock, Observation: [A significant collapse event, possibly classified as a deep-seated collapse, has taken place. Sediments are dispersed across the area, indicating the presence of flowing water. Fallen trees suggest that the entire block has rotated towards the slope. The debris is likely the result of a deep-seated collapse originating from weathered bedrock. Within the debris, large rocks, some with diameters reaching several meters, are observable. The uppermost layer of the slope appears to have weathered, exposing a layer of bedrock. The deepest layer of the collapse likely comprises weathered bedrock that has maintained its structure.], Future risk: None}",
+            "image": "14.jpg",
+            "image_source": "ms",
+            "qid": "77"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Collapse, Cause: Weathering and erosion of the slope, Observation: [The provided photograph portrays a mountainous terrain featuring a relatively steep slope leading to a flat and gently sloping surface. Towards the end of this surface, there is a collapsed cliff composed of hard rock, which covers the slope below it. The valley below appears relatively flat, with a river meandering through it and a notable absence of significant sediment deposits or debris flows. A recent collapse has resulted in the displacement of sediment towards the center of the valley.], Future risk: There is a high possibility of further movement of the remaining block, particularly during periods of heavy rainfall. This could cause the sediment to flow and expand the affected area. Although the collapse is not expected to spread significantly, the sediment still has the potential to move and cause damage.}",
+            "image": "15.jpg",
+            "image_source": "ms",
+            "qid": "78"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Elevated groundwater pressure resulting from heavy rainfall, Observation: [The affected region displays a cliff with a thickness of several meters, strongly indicating the occurrence of a landslide. The extent of the collapse and the area covered by debris can be approximated. The portion where the trees remain upright does not appear to have experienced a significant collapse. The flow direction of the debris can be deduced from the alignment of the logs. The landslide likely originated from the termination point or along the ridge. A road is situated in close proximity to the collapsed area.], Future risk: The area is susceptible to recurrent landslides and debris flows, given the repeated incidence of such events.}",
+            "image": "16.jpg",
+            "image_source": "ms",
+            "qid": "79"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Mountain Slope Collapse, Cause: Possible influence of rain, although the region is not known for accumulating surface water. Groundwater buildup and the impact of man-made structures may have also contributed to the collapse. Observation: [The collapse extended a considerable distance, potentially reaching the lower residential area. It resembled more of a mudflow rather than a typical landslide, evident from the substantial amount of surface soil involved. No significant boulders are visible, but man-made structures such as a power plant and a structure leading to a building below are present. The area does not exhibit a distinct valley but rather a ridge with shallow valleys where weathered material could have accumulated. It is plausible that the region was once covered by lava or volcanic rock, potentially concealing an underlying valley. Although the man-made structure may have played a role, the collapse transpired at a distance from it. The area appears to have experienced minor collapses and diverted water from the slope.], Future risk: Similar collapses are improbable to transpire in the surrounding area, particularly on the smooth slope visible on the left side of the photograph. However, it is possible that the valley may have encountered debris flows in the past.}",
+            "image": "17.jpg",
+            "image_source": "ms",
+            "qid": "80"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide or Collapse, Cause: Not specified, Observation: [The scene depicts a collapse that has extended to this extent, resulting in scattered debris. There is a structure located above, resembling a power plant, along with a facility that appears to have been artificially cut in this direction. The collapse appears to have transpired at the tip of a ridge. In the distance, a mountain is visible, although it is challenging to discern due to overlapping features. The mountain exhibits a broad base, resembling that of an ancient volcano, although this is uncertain.], Future risk: None}",
+            "image": "18.jpg",
+            "image_source": "ms",
+            "qid": "81"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide or Collapse, Cause: Not specified, Observation: [On the right bank of the dam lake, a slope has collapsed, and numerous other collapses have occurred in the vicinity. The terrain exhibits a relatively flat topography, characterized by consistent ridge heights and shallow rivers meandering through it. The geological structure is relatively uncomplicated, likely comprising sedimentary rocks such as sand and mud, possessing a strength comparable to soft rock. The collapses appear to be surface collapses transpiring at the head of the ridges and on thin cliffs. Further examination will focus on the thickening of the side walls in the close-up view. In general, the geological structure of the area exhibits similarities, including comparable slopes, inclines, and ridges.], Future risk: None}",
+            "image": "19.jpg",
+            "image_source": "ms",
+            "qid": "82"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide or Collapse, Cause: 2016 Kumamoto earthquake, Observation: [The collapse is notorious for sweeping away the renowned Aso Ohashi bridge that was intended to be situated in this location. The collapse appears to have originated from the head of the ridge and reached the river, although no substantial debris accumulation is evident on the opposite bank. The right bank slope seems to have entirely collapsed, and there are visible signs of soil erosion in the area where the trees are leaning. The collapse has inflicted damage to the road, and there are indications of soil erosion within the region. The presence of a ground crack and shadowy streaks suggests surface tilting. The area lacks distinct valleys, and there are no implemented measures to mitigate soil erosion.], Future risk: The likelihood of additional collapses is significant, particularly during intense aftershocks or heavy rainfall.}",
+            "image": "20.jpg",
+            "image_source": "ms",
+            "qid": "83"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide or Collapse, Cause: Possible earthquake, Observation: [On the right bank of the river, a collapsed area is evident, encompassing the entire slope. The bridge spanning the river displays signs of damage, and the road extending from it is also affected, tilting towards the river due to the visible collapse. The slope extends in this direction, featuring bare patches where vegetation is absent. Indications suggest that the collapse may have occurred during the same earthquake responsible for the collapse of soil blocks covered in vegetation. The sandbags in the area appear relatively recent, but the collapse likely transpired before the earthquake, with subsequent outflow of soil and sand. The slope on the opposite side of the collapsed area presents a gently sloping surface covered with volcanic deposits, while the slope facing this side is steep and exposed to volcanic deposits.], Future risk: The collapsed slope is susceptible to further collapses during periods of heavy rainfall or earthquakes, as it comprises a slope where weathering materials have accumulated and lacks a well-developed valley.}",
+            "image": "21.jpg",
+            "image_source": "ms",
+            "qid": "84"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type : Geological Disaster, Cause : Heavy Rainfall, Observation : [The disaster took place at the confluence of two rivers, where numerous houses were submerged in water and sediment, The riverbed is composed of gravel, with a gradient of 1000/3 or 1000/4, and the size of the gravel is estimated to be over 30cm, The main road along the river is also buried under sediment, The houses located on the riverbank are also submerged, indicating an unusual rise in water level and sediment flow, The slope of the mountain is natural, and landslides have occurred in groups, The building in the picture appears to be a multi-story structure, but the first floor is completely submerged, The water level seems to have risen above the height of the building's foundation, and the surrounding ground is covered with debris, The agricultural land on the terraced slope has also been covered with sediment, and some houses have been destroyed], Future risk : None}",
+            "image": "22.jpg",
+            "image_source": "ms",
+            "qid": "85"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Sediment Accumulation, Cause: Potentially Heavy Rain and Weathered Granite Rocks, Observation: [The provided image reveals an expansive area in the upstream portion of a valley, exhibiting significant sediment accumulation and gravel deposits. The presence of rice paddies and residential areas within the valley indicates its pre-existing state as a wide and deep valley prior to the occurrence of the disaster. The recurrent incidence of small-scale surface collapses suggests that the region is predominantly composed of granite or similar rock types characterized by weathered layers that contribute to surface collapses. The substantial presence of wood debris and gravel within the river implies the likelihood of larger collapses further upstream. The high water level in the riverbed, coupled with the existence of residential areas situated at lower elevations, renders them vulnerable to flooding.], Future risk: The susceptibility to flooding remains a concern, particularly during episodes of heavy rainfall in the low-lying residential areas.}",
+            "image": "23.jpg",
+            "image_source": "ms",
+            "qid": "86"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Geological Disaster, Cause: Possibly a Thick Weathering Layer at the Ridge Head, Observation: [The provided image showcases a collapse that transpired within a broad and gently sloping valley. The collapse originated just below the road and subsequently flowed into the river. The terrain exhibits multiple well-defined valleys, and the slope displays a subtle incline. The head of the ridge may have possessed a substantial weathering layer, rendering it susceptible to collapse. The surrounding vegetation predominantly comprises coniferous trees, although certain areas feature different vegetation, suggesting the occurrence of previous landslides.], Future risk: The future risk is uncertain, as there is no significant damage evident in the surrounding area, and no information is available regarding the likelihood of similar collapses occurring again.}",
+            "image": "24.jpg",
+            "image_source": "ms",
+            "qid": "87"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Large-scale Geological Disaster, Cause: High Permeability of the Rock Formations, Observation: [The provided image exhibits a distinct landslide cliff, estimated to exceed 10 meters in height. The collapse encompasses both surface and deep rock layers. The surrounding slopes display indications of erosion and instability. The formation of a natural dam and subsequent flooding has given rise to a new channel, potentially leading to additional erosion and instability. The texture and color of the exposed rock formations aided experts in assessing the extent of the landslide and determining the boundaries of the natural dam.], Future risk: There is a possibility of further movement during periods of heavy rainfall, along with the potential for additional erosion due to the formation of the new channel.}",
+            "image": "25.jpg",
+            "image_source": "ms",
+            "qid": "88"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Slope Collapse, Cause: Potential differences in geological structure, such as a flow plate structure or a fault with a slope inclination, Observation: [The provided image illustrates a slope with a comparable inclination to the collapsed slope, visible in the distance towards the rear of the Akadani River. The right bank of the river displays a steep slope with a substantial incline, while the left bank exhibits several small streams, creating a symmetrical terrain. The sediment from the collapse has obstructed the river channel, forming a natural dam. Although the original terrain of the collapsed slope remains unknown, it is feasible to envision its characteristics by examining other photographs. The disparity in terrain between the left and right banks of the Akadani River may stem from disparities in the geological structure, such as a flow plate structure or a fault with a slope inclination.], Future risk: The adjacent area that did not experience collapse may also be subject to the same geological structure, rendering it a potential candidate for future collapses. There may have been multiple collapses in the past, with collapsed areas potentially present in this region.}",
+            "image": "26.jpg",
+            "image_source": "ms",
+            "qid": "89"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: None, Cause: None, Observation: [The provided image reveals the presence of a shallow valley, along with a noticeable valley formation on the adjacent slope. A valley-like crack-like structure is discernible, and the terrain surface exhibits a jagged texture, implying that it may consist of bedrock rather than sediment. This inference is supported by the absence of typical sediment textures and uniform structures.], Future risk: None}",
+            "image": "27.jpg",
+            "image_source": "ms",
+            "qid": "90"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: None, Cause: Possibility of degraded rock resulting in gravity deformation and displacement, Observation: [In the eastern section of the collapsed area, a shallow crack is evident. The cliff where the landslide transpired displays discernible rock formations, with the surface layer exhibiting erosion and the accumulation of thick sediment. The majority of the sediment that could have moved has already done so, leaving behind few remaining blocks to be displaced. The entire area is primarily characterized by rock formations.], Future risk: None}",
+            "image": "28.jpg",
+            "image_source": "ms",
+            "qid": "91"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Massive landslide, Cause: None, Observation: [A significant collapse of the ridge has transpired, extending all the way to the river and resulting in the formation of a natural dam. The upstream side of the area is now flooded, with a natural dam spanning the entire width of the collapse. The collapse appears to have originated from the head of the ridge, leaving behind an irregular surface of exposed bedrock. While vegetation remains in certain areas, a thin layer of debris covers the surface. The collapsed material likely consists of crushed and weathered bedrock, without any indication of large boulders. The cliff face assumes a bowl-like shape, and the overall surface seems relatively stable.], Future risk: None}",
+            "image": "29.jpg",
+            "image_source": "ms",
+            "qid": "92"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide and creation of a natural dam, Cause: Likely differences in geology, geological structure, and degree of surface weathering, Observation: [The photograph depicts an embankment extending downstream from just below the collapsed edge. The embankment measures approximately 10 meters in height. The collapse predominantly affects the right bank of the valley, while the left bank displays a well-defined valley pattern. The right bank slope possibly possesses favorable permeability as a rock formation, enabling water penetration and inhibiting the formation of surface valleys. The surrounding area surrounding the landslide does not exhibit significant debris accumulation.], Future risk: There exists a possibility of vegetation-covered debris mobilizing downstream during periods of heavy rainfall. It is unlikely that another landslide of the same magnitude will transpire, but assessing the stability of the natural dam requires additional information. Further observation of downstream water flow is necessary to formulate a judgment.}",
+            "image": "30.jpg",
+            "image_source": "ms",
+            "qid": "93"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Earthquake-induced landslide, Cause: Earthquake, Observation: [The central focus of the provided image is the substantial collapse of the slope directly in front.], Future risk: None}",
+            "image": "31.jpg",
+            "image_source": "ms",
+            "qid": "94"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Geological disaster (landslides and sediment flow), Cause: None, Observation: [The collapse transpired at the beginning of a valley, leading to the flow of sediment into residential regions. Various locations have experienced similar collapses, resulting in landslides. The erosion of riverbanks has led to the loss of sediment deposits from previous landslides.], Future risk: Considering the historical occurrence of landslides and sediment flow in the area, there is a potential for similar events to transpire in the future.}",
+            "image": "32.jpg",
+            "image_source": "ms",
+            "qid": "95"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Debris flow, Cause: The collapse of surface weathering material that subsequently flowed down the valley with water, Observation: [The photograph captures a valley with visible water flow, devoid of large boulders or rockfalls. The debris flow consists of small gravel, and the presence of logs suggests that trees were likely uprooted and carried downstream. The extent of the sediment flow extends beyond what is visible in the image, yet it does not seem to have caused substantial damage to surrounding structures. Similar collapse areas are discernible in the distance, and the presence of sediment in the valley implies a collapse occurring at a higher elevation in the valley.], Future risk: Given the topography and geological conditions, it is probable that similar events are recurrent phenomena in the area.}",
+            "image": "33.jpg",
+            "image_source": "ms",
+            "qid": "96"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Unclear in the text, Observation: [The collapse manifested as a steep slope featuring a red-colored landslide cliff with a slightly variable slope. The area exhibits a valley-like configuration, and the soil is presently submerged in water, resulting in the formation of a natural dam that has led to overflow. The terrain displays indications of a past landslide, and the mobile soil block that formed the gentle slope may experience movement once more.], Future risk: It is crucial to not leave the area unattended, as even surface soil has the potential to flow and cause additional damage during periods of rainfall.}",
+            "image": "34.jpg",
+            "image_source": "ms",
+            "qid": "97"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Deep-seated landslide and weathering of rock formations, Observation: [The image depicts a slope where the rock formations are exposed and exhibit signs of weathering. The upper layer of the slope has eroded, leading to the accumulation of sediment. Additionally, there is evidence of the landslide impacting a nearby road.], Future risk: The possibility of the accumulated sediment collapsing abruptly and triggering a catastrophic flow is low.}",
+            "image": "35.jpg",
+            "image_source": "ms",
+            "qid": "98"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslides, Cause: Weathering of the underlying rock and multiple collapses, Observation: [The presence of several collapses has led to landslides that have obstructed the road. The landslides are believed to have originated from the collapsed areas and cascaded down into the valley. The vegetation on the slope appears to be human-planted, and no significant boulders can be seen in the debris.], Future risk: There is a potential for similar collapses of comparable magnitude and depth to occur in this area in the future.}",
+            "image": "36.jpg",
+            "image_source": "ms",
+            "qid": "99"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Soil and sand spill, Cause: Collapse of a nearby area, Observation: [The spill of soil and sand from the collapsed neighboring area has filled the valley, making it no longer visible. The surrounding roads have been covered by the soil and sand.], Future risk: There is no anticipated future risk associated with this soil and sand spill event.}",
+            "image": "37.jpg",
+            "image_source": "ms",
+            "qid": "100"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide due to earthquake, Cause: Kumamoto earthquake in 2016, Observation: [The mountain side of a slope, where a retaining wall had collapsed, is covered by a landslide, along with the collapse of the river side of the slope. The exposed bedrock indicates that the foundation of the retaining wall was made of hard bedrock. A visible crack in the lava layer suggests it resulted from the earthquake. The collapse appears to be a surface landslide rather than a deep-seated one. There may be cracks at the head of the cliff that could potentially lead to further collapse. The accumulated debris consists of small rock fragments, indicating that the original bedrock was rounded and easily separated. Some larger boulders remaining are likely part of a lava layer.], Future risk: The existing cracks at the head of the cliff pose a potential risk for further collapse.}",
+            "image": "38.jpg",
+            "image_source": "ms",
+            "qid": "101"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide due to earthquake, Cause: Kumamoto earthquake in 2016, Observation: [The collapse has affected a wide area, with landslides flowing into the river and partially covering the riverbed. There are visible cracks and surface damage, which could indicate fault lines or other geological structures. The shifted white lines on the road surface suggest the presence of a fault line rather than a collapse. The layer structure of the ground is apparent, with parallel lines indicating different layers of soil. The presence of vertical cracks and columnar joints suggests the presence of volcanic rock. The railway tunnel seems to have remained intact, while the surface layer of soil has slid down the steep slope and carried away some structures. The surface layer of soil appears fractured and rotated, creating a block-like structure.], Future risk: None}",
+            "image": "39.jpg",
+            "image_source": "ms",
+            "qid": "102"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide and Debris flow, Cause: None, Observation: [The debris flow has reached this side, indicating partial blockage of the river channel. There are signs of collapse on the opposite bank, but they appear relatively small. The downstream area exhibits a layered structure with exposed bedrock and well-developed joints. The geological structure in this area is relatively flat with a gentle slope, lacking thick sediment or bedrock that could easily slide down steep slopes. The crack observed at the head of the collapse is not clearly visible in this photo, but it may be located around this area. It is possible that the head of the collapse was a raised embankment or a cultivated field.], Future risk: There is a potential for secondary sliding along this crack, so immediate measures such as adding water may be necessary.}",
+            "image": "40.jpg",
+            "image_source": "ms",
+            "qid": "103"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: None, Cause: Potential fault line, Observation: [The image shows a construction site where land development activities are taking place. The area appears to be a depression, possibly filled with soil for agricultural purposes. There is a possibility of a fault line in this area, which may have contributed to the cracks in the road.], Future risk: The presence of a potential fault line in the terrain raises concerns for possible geological disasters in the future.}",
+            "image": "41.jpg",
+            "image_source": "ms",
+            "qid": "104"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Possible sliding of the soil used to fill the valley, Observation: [There is a crack in the area where the road is aligned. The surrounding terrain appears to be a valley, and it appears that the road was constructed on a filled-in valley. The collapsed cliff has a height of approximately 5 meters, resembling a landslide cliff. The steepness of the head of the landslide cliff suggests a potential slide, although it does not appear to extend deeply underground.], Future risk: No immediate future risk identified.}",
+            "image": "42.jpg",
+            "image_source": "ms",
+            "qid": "105"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Landslide, Cause: Collapse of the left bank slope of the valley, Observation: [The photo depicts a collapsed area in Shiiba Village, Miyazaki Prefecture. The collapsed area exhibits a distinct boundary, and it is uncertain whether the river channel is obstructed. The terrain consists of steep mountainous river valleys, some of which exhibit sparse vegetation due to previous landslides. The collapsed soil has likely already flowed downstream, and there is no evidence of recent landslides.], Future risk: The collapsed area is not expected to undergo significant expansion, and there are no indications of an imminent large-scale landslide.}",
+            "image": "43.jpg",
+            "image_source": "ms",
+            "qid": "106"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Geological disaster, Cause: Slope erosion, Observation: [The photo captures the aftermath of a disaster that took place in 2011 in Gojo City, Nara Prefecture. A substantial collapse has occurred, resulting in the formation of a significant landslide cliff. The area beneath the collapse is filled with debris, which has likely been carried into the nearby river. The river continues to erode the debris. Additionally, the photo shows a house situated on a slope, possibly indicating a previous landslide.], Future risk: The presence of debris raises the possibility of future blockages, making the area susceptible to slope disasters.}",
+            "image": "44.jpg",
+            "image_source": "ms",
+            "qid": "107"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Cliff collapse, Cause: Weathered rock formations, sediment accumulation, river erosion, and potential large geological structure, Observation: [A distinct boundary marks the site of a cliff collapse. Sediment has accumulated behind the collapse, and the river has eroded it. It is possible that the sediment filled the riverbed, leading to overflow. The opposite bank may also have been impacted. Precautionary measures have been implemented following past collapses in the area.], Future risk: The geological characteristics of the region increase the likelihood of similar disasters occurring in the future.}",
+            "image": "45.jpg",
+            "image_source": "ms",
+            "qid": "108"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Geological disaster (landslide and debris flow), Cause: Collapse of weathered material from the source of the valley, Observation: [The soil and debris from the collapse flowed down a small valley and reached a settlement. The debris flow included large logs and boulders exceeding 1 meter in size. The source of the debris flow appears to be a coniferous forest with a moderately steep slope. The settlement has been buried by debris up to a higher point on the left bank of the valley, indicating a high flow rate and fluidity. The surrounding terrain exhibits a different vegetation pattern, possibly due to past landslides and debris flows.], Future risk: The accumulation of debris may continue to flow down from its current location, and the remaining debris on the surface may also slide further. However, there is no expectation of significant expansion in the disaster area.}",
+            "image": "46.jpg",
+            "image_source": "ms",
+            "qid": "109"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: None, Cause: Extensive weathering of the mountain and potential occurrence of previous landslides or debris flows, Observation: [The picture shows a newly planted forest extending up to the mountain top, and a well-developed valley is also visible. The presence of rocky reefs protruding from the mountain suggests the presence of moderately hard rock. The collapsed area does not exhibit a distinct rock structure, indicating significant weathering throughout the mountain.], Future risk: There is a possibility of a future landslide or debris flow similar to previous events.}",
+            "image": "47.jpg",
+            "image_source": "ms",
+            "qid": "110"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{Disaster Type: Geological disaster, Cause: Uncertain, but poor drainage may have played a role, Observation: [The edge of the road is experiencing collapse, and there is visible shifting in the slope on the mountain side. The exposed bare areas on the mountain slope suggest the potential for further collapse. The slide area contains collapsed soil, sediment, and weathered rock. The rock appears to be highly weathered and lacks large, hard structures. The material below the slide consists of weathered rock with few large boulders. The flow of the slide does not seem highly mobile, likely due to the underlying geology. The collapse does not appear to be deep-seated, and there are no signs of cracks or other concerning features.], Future risk: There is a possibility of further flow, but it is unlikely that the collapse will significantly expand.}",
+            "image": "48.jpg",
+            "image_source": "ms",
+            "qid": "111"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Slope collapse, Cause: Modification of the slope and environmental conditions, Observation: [A facility has been constructed on a ridge that acts as a watershed. There are indications of a collapse on the opposite side of the ridge, which serves as the source of a downstream stream. The collapse is impacting the road on the mountain side. The slope has undergone artificial modifications, with small steps visible, suggesting it may have been filled. Similar collapses are happening in other areas, resulting in the flow of soil and sand onto the road. The facility is situated on a large, gradual slope, possibly influenced by the supply of soil and sand from upstream. Surface collapses are recurring events on this slope, resulting in the formation of gentle slopes that fill shallow valleys.], Future risk: Given the environmental conditions, it is likely that this type of collapse will continue to occur periodically in the long term.}",
+            "image": "49.jpg",
+            "image_source": "ms",
+            "qid": "112"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Geological disasters (including bridge collapse and landslides), Cause: Possible presence of active fault line and volcanic activity (indicated by sediment structure), Observation: [Multiple geological disasters have occurred in the area, resulting in the collapse of the Aso Bridge. Landslides have occurred on the right bank of the river, and the presence of cracks suggests the potential for slope expansion. Cracks are also visible in the rice fields and bare ground. The sediment structure indicates the presence of volcanic lava or pyroclastic flow. The landslides have damaged and shifted the road, with cracks indicating the possibility of further collapse. Some damage has been observed at the power plant, although the extent is uncertain.], Future risk: The area remains at risk for additional geological disasters, and caution should be exercised.}",
+            "image": "50.jpg",
+            "image_source": "ms",
+            "qid": "113"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: None, Cause: None, Observation: [The photograph captures a disaster that occurred in Sakari, Ichinomiya-cho, Aso City], Future risk: None}",
+            "image": "51.jpg",
+            "image_source": "ms",
+            "qid": "114"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Earthquake and Landslides, Cause: Kumamoto earthquake and possibly specific layers or rock types susceptible to collapse due to similar weathering conditions or crack patterns., Observation: [There are new landslides visible on the collapsed slopes in the foreground, characterized by distinct and somewhat damp soil., The presence of sandbags indicates that some of the landslides may be older and have expanded., The bright area in the foreground is likely a pasture or semi-natural grassland., The slope is gently sloping and smooth, likely part of the plateau formed by the pyroclastic flow of Aso., The exposed strata on the caldera wall consist of volcanic rocks, including lava, pyroclastic flow, and layers of volcanic ash.], Future risk: The slope may continue to expand, and future earthquakes could trigger additional landslides.}",
+            "image": "52.jpg",
+            "image_source": "ms",
+            "qid": "115"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Landslide, Cause: Possible soil loosening due to an earthquake., Observation: [The image depicts a collapsed slope, but it does not appear to be a deep-seated landslide., The erosion of the surface layer has led to the collapse, revealing the underlying bedrock., Different vegetation patterns suggest past instances of collapse in the area., The collapsed region might contain buried trees that could be displaced and transformed into driftwood by rainfall., The presence of a sandbag dam downstream indicates the susceptibility of this area to recurrent collapses.], Future risk: The potential for repeated collapses, with the possibility of buried trees being displaced and transformed into driftwood through rainfall.}",
+            "image": "53.jpg",
+            "image_source": "ms",
+            "qid": "116"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Landslide, Cause: Likely due to the accumulation of debris from previous landslides and significant weathering of altered volcanic or igneous rocks., Observation: [The image portrays a collapsed area characterized by exposed rock formations, indicating the presence of a landslide cliff., Most of the soil and debris have settled at the base of the slope, while finer particles have flowed beyond the emergency retaining wall, reaching the edge of a nearby building., The geological composition of the area suggests the presence of altered volcanic or igneous rocks that have undergone extensive weathering., The vegetation in the vicinity varies, with sections featuring coniferous or broadleaf trees, potentially indicating variations in soil composition or reforestation efforts., The slope has likely experienced previous landslides, and the current collapse may have been triggered by the accumulation of debris from past events., The area may have originally been a gently sloping riverbank, and the current facility was constructed on the right bank of the river.], Future risk: There is a possibility of continued downhill movement of soil and debris from the collapse, with the extent of future movement dependent on the intensity and duration of rainfall.}",
+            "image": "54.jpg",
+            "image_source": "ms",
+            "qid": "117"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Landslide, Cause: Possibly due to the presence of a layer of easily slidable material, although the exact cause is unclear., Observation: [The collapse of the slope resulted in a substantial flow of soil and debris., The involvement of heavy machinery in the area indicates the fluidity of the soil., The debris has completely buried structures, including houses., The landslide appears to be composed of fine-grained material, indicating a highly fluid movement rather than the presence of large boulders., The original slope was not particularly steep, but the resulting cliff is steep and well-defined., The terrain following the landslide is characterized by a smooth, flat surface, revealing the underlying layers of the slope., The landslide exhibited high velocity, resulting in significant damage to the structures in its path., The debris reached a considerable height of over 10 meters, indicating a substantial flow rate.], Future risk: No immediate future risk identified.}",
+            "image": "55.jpg",
+            "image_source": "ms",
+            "qid": "118"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Landslides, Cause: Unknown, Observation: [The photograph illustrates a coastal-facing mountain slope with exposed rocks and scattered small landslides throughout the area., The landslides seem to originate from the valley heads and are relatively small in scale., The depth of the landslides is uncertain, and they have not significantly altered the overall terrain., The presence of exposed rocks suggests that the area is composed of weathered deep-seated rocks., The slope exhibits a combination of steep and gentle gradients, and there are indications of sediment accumulation, likely from previous landslides., The tidal action has carried away some of the sediment, making it challenging to ascertain the precise characteristics of the terrain., The photograph does not reveal any substantial accumulation of landslide debris, suggesting that the debris has flowed down to the coast.], Future risk: There is a significant risk of future landslides, particularly in areas with similar terrain.}",
+            "image": "56.jpg",
+            "image_source": "ms",
+            "qid": "119"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Highly fluid landslide, Cause: Potential impact of melting snowwater increasing pore water pressure in the slip block, Observation: [A distinct slip cliff is evident with cracks above it, indicating a high likelihood of expansion., Traces of water flow within the slip cliff suggest a relatively tranquil flow rather than a rolling mass., The fragmented snow on the surface retains its shape, suggesting a lack of destructive force., The slip blocks exhibit protruding movement at the end., There is no evidence of material flowing far from the sediment's end, indicating that heavy rain is unlikely to be the cause., The flat surface above the slip is concerning, possibly indicating artificial excavation., The road crossing the slip's head may have collected meltwater, and the possibility of this being a watershed area cannot be ruled out., The terrain of the area suggests it may be a likely place for water accumulation., Small landslides may have occurred at various points on the slope., The sediment of this landslide exhibits high fluidity.], Future risk: If more water enters or in the event of rainfall, there is a possibility of continued flow in the landslide.}",
+            "image": "57.jpg",
+            "image_source": "ms",
+            "qid": "120"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Surface collapse, Cause: The collapse is attributed to surface weathering., Observation: [Evidence of a landslide is present, but it does not involve deep bedrock., The debris primarily consists of fine particles rather than large rocks., The collapse occurred in the vicinity of a small valley, and indications of gully formation are visible., The debris has reached the residential area below, but no structural damage is apparent., It appears that the debris flowed into a small river that leads to the sea, where logs have become lodged at the bridge., The collapse likely originated from the upper end of the valley, near the top of the ridge., Similar collapse evidence exists on the opposite side of the ridge., The location where the house is situated is a low-lying area formed by river-deposited sediment., The valley has likely experienced past landslides, although clear evidence is lacking., The valley is a small, narrow, and terraced lowland several meters in height.], Future risk: In the event of a significant increase in water flow, there is a possibility of flooding in the area.}",
+            "image": "58.jpg",
+            "image_source": "ms",
+            "qid": "121"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Collapse and mudslides, Cause: The cause of the collapse and mudslides is uncertain., Observation: [The collapse took place in close proximity to the ridge, leading to the flow of soil and sand into the surrounding area., Similar collapses have been observed in other regions with comparable terrain, resulting in mudslides entering low-lying rivers., The overall terrain exhibits a weathered surface layer rather than sharp features., Deep valleys with numerous rocks are present, resembling the characteristics of the observation point., Hence, it is likely that the geological composition is similar as well.], Future risk: No future risks are anticipated at this time.}",
+            "image": "59.jpg",
+            "image_source": "ms",
+            "qid": "122"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Large collapse, Cause: The collapse was triggered by the infiltration of rainwater, which increased pore pressure and resulted in the collapse of weathered bedrock., Observation: [A significant collapse event has occurred, causing weathered bedrock to collapse to a depth exceeding 10 meters., Exposed bedrock is visible along the boundary of the collapse, as well as in other areas., Vegetation present suggests that some material from the collapse remains on the slope., The surrounding terrain displays a distinct valley with a consistent slope, indicating the presence of low-permeability bedrock., The depth of the collapse can be estimated based on the shadows cast, and the color of the exposed bedrock suggests a relatively shallow depth.], Future risk: There are no anticipated future risks at this time.}",
+            "image": "60.jpg",
+            "image_source": "ms",
+            "qid": "123"
+        },
+        {
+            "instruction": "Instruction: Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }. Response: ", 
+            "answer": "{ Disaster Type: Landslide, Cause: The landslide was triggered by the 2016 Kumamoto earthquake and the presence of a fault in the area., Observation: [There is evidence of soil and sand flowing out of the area and reaching the river, passing through a railway and a major road., The road seems to have been severed, and remnants of abutments indicate the former location of the Aso Ohashi bridge., Multiple landslides can be observed on the left bank of the river on this side., The building depicted in the picture is situated on a cliff, and cracks are visible on the slope, suggesting the possibility of further expansion., The slope also displays exposed rocks, and the lower section is covered with new soil and sand., The exposed rocks appear to be a series of overlapping layers of solid rocks, exhibiting a bluish color, likely formed by volcanic lava from Mount Yoka., The presence of cracks in the area indicates the existence of a fault, which may have contributed to the ongoing surface fractures.], Future risk: The presence of a fault and visible cracks on the slope suggest a potential risk of further landslides.}",
+            "image": "61.jpg",
+            "image_source": "ms",
+            "qid": "124"
+        }
+    ]
+}

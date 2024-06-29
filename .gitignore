@@ -140,3 +140,4 @@ data/weights/
 data/images/
 output_dir
 models/
+data/all_data.json
