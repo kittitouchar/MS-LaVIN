@@ -139,7 +139,7 @@ with gr.Blocks() as demo:
                 value=0.95,
                 step=0.05,
                 interactive=True,
-                label="top_k in sampling",
+                label="top_p",
             )
 
             sampling_seed = gr.Slider(
@@ -157,7 +157,7 @@ with gr.Blocks() as demo:
                 value=1.0,
                 step=0.1,
                 interactive=True,
-                label="Temperature",
+                label="temperature",
             )
 
         with gr.Column():
