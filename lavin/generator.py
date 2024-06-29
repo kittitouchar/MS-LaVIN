@@ -38,8 +38,8 @@ class LaVIN_Generator:
         indicators: List[int],
         max_gen_len: int,
         n_feats: int = 3,
-        temperature: float = 0.8,
-        top_p: float = 0.95,
+        temperature: float = 1.0,
+        top_p: float = 1.0,
     ):
         bsz = len(prompts)
         params = self.model.params
@@ -134,6 +134,8 @@ class LaVIN_Generator:
 
 
 def sample_top_p(probs, p):
+    torch.manual_seed(seed=1234)
+
     probs_sort, probs_idx = torch.sort(probs, dim=-1, descending=True)
     probs_sum = torch.cumsum(probs_sort, dim=-1)
     mask = probs_sum - probs_sort > p

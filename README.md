@@ -1,12 +1,31 @@
 # Landslide VLM
 
+## Evaluation:
 ```
-conda create -n lavin python=3.8 -y
+# landslide_eval
+torchrun --nproc_per_node 1 landslide_eval.py \
+--llama_model_path './data/weights/' \
+--llm_model '7B' \
+--adapter_path '7B-checkpoint-99.pth' \
+--temperature 1.0 \
+--top_p 1.0
+```
+```
+# landslide_demo
+torchrun --nproc_per_node 1 landslide_eval.py \
+--llama_model_path './data/weights/' \
+--llm_model '7B' \
+--adapter_path '7B-checkpoint-99.pth'
+
+prompt:
+Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }.
+```
+
+## Installation
+```
+# Install
+conda create -n lavin python=3.9 -y
 conda activate lavin
-
-# install pytorch - use torch 2.0
-
-# install dependency and lavin
 pip install -r requirements.txt
 pip install -e .
 ```

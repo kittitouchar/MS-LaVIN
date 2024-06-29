@@ -6,7 +6,7 @@ transformers
 timm
 tensorboard
 ftfy
-gradio
+gradio==3.50.2
 wandb
 ipython
 jupyterlab
