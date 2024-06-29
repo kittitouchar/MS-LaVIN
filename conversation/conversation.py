@@ -10,8 +10,8 @@ from enum import auto, Enum
 from typing import List, Tuple, Any
 import re
 
-ERROR_CODE= [260, 1794, 11440]
-ERROR_MESSAGE=[1, 7423, 29892, 474, 508, 29915, 29873, 1234, 445, 1139, 29889, 2]
+ERROR_CODE = [260, 1794, 11440]
+ERROR_MESSAGE = [1, 7423, 29892, 474, 508, 29915, 29873, 1234, 445, 1139, 29889, 2]
 
 
 class SeparatorStyle(Enum):
@@ -26,10 +26,10 @@ class Conversation:
     system: str
     roles: List[str]
     messages: List[List[str]]
-    offset: int
+    offset: int = 2
     # system_img: List[Image.Image] = []
     sep_style: SeparatorStyle = SeparatorStyle.SINGLE
-    sep: str = ""
+    sep: str = "\n"
     sep2: str = None
 
     skip_next: bool = False
@@ -117,8 +117,8 @@ CONV_VISION = Conversation(
 )
 
 
-
 class Chat:
+
     def __init__(self, model, vis_processor, device='cuda:0'):
         self.device = device
         self.lavin = model
@@ -131,30 +131,50 @@ class Chat:
         else:
             conv.append_message(conv.roles[0], text)
 
-    def answer(self, conv, img_list, max_new_tokens=300, num_beams=1, min_length=1, top_p=0.9,
-               repetition_penalty=1.0, length_penalty=1, temperature=1.0, max_length=2000,n_feats=6):
+    def answer(self,
+               conv,
+               img_list,
+               max_new_tokens=300,
+               num_beams=1,
+               min_length=1,
+               top_p=1.0,
+               sampling_seed=0,
+               repetition_penalty=1.0,
+               length_penalty=1,
+               temperature=1.0,
+               max_length=512,
+               n_feats=6):
         conv.append_message(conv.roles[1], None)
-        prompt, indicator,  img = self.get_context_emb(conv, img_list)
+        prompt, indicator, img = self.get_context_emb(conv, img_list)
 
-        current_max_len = len(prompt) + max_new_tokens+n_feats
+        current_max_len = len(prompt) + max_new_tokens + n_feats
         if current_max_len - max_length > 0:
             print('Warning: The number of tokens in current conversation exceeds the max length. '
                   'The model will not see the contexts outside the range.')
         begin_idx = max(0, current_max_len - max_length)
 
         prompt = prompt[begin_idx:]
-        CODE=self.lavin.tokenizer.encode(prompt, bos=False, eos=False)
-        if ERROR_CODE in [CODE[i:i+len(ERROR_CODE)] for i in range(len(CODE)-len(ERROR_CODE)+1)]:
-            output_text=self.lavin.tokenizer.decode(ERROR_MESSAGE).split('Responese:')[-1].strip()
+        CODE = self.lavin.tokenizer.encode(prompt, bos=False, eos=False)
+        if ERROR_CODE in [CODE[i:i + len(ERROR_CODE)] for i in range(len(CODE) - len(ERROR_CODE) + 1)]:
+            output_text = self.lavin.tokenizer.decode(ERROR_MESSAGE).split('Responese:')[-1].strip()
         else:
-            outputs = self.lavin.generate(
-                prompts= [prompt],
-                images= img,
+            print("temperature: ", temperature)
+            print("top_p: ", top_p)
+            print("Prompt: ", prompt)
+            print("indicator: ", indicator)
+            print("max_gen_len: ", max_length)
+            print("n_feats: ", n_feats)
+            print("img: ", img.shape)
+
+            outputs, _ = self.lavin.generate(
+                prompts=[prompt],
+                images=img,
                 indicators=[indicator],
                 max_gen_len=max_length,
                 n_feats=n_feats,
-                temperature = 0.1,
-                top_p = 0.75,
+                temperature=temperature,
+                top_p=top_p,
+                sampling_seed=sampling_seed,
             )
 
             output_text = outputs[0].split('Responese:')[-1].strip()
@@ -183,12 +203,13 @@ class Chat:
 
     def get_context_emb(self, conv, img_list):
         prompt = conv.get_prompt()
+        print("Prompt: ", prompt)
 
         if '<Img><ImageHere></Img>' in prompt:
-            indicator=1
-            prompt=prompt.replace('<Img><ImageHere></Img>','')
+            indicator = 1
+            prompt = prompt.replace('<Img><ImageHere></Img>', '')
         else:
-            indicator=0
-        assert img_list is None or len(img_list) <=  1
+            indicator = 0
+        assert img_list is None or len(img_list) <= 1
 
-        return prompt, indicator,  img_list[0] if indicator==1 else torch.Tensor(torch.zeros(1,3, 224, 224).float())
+        return prompt, indicator, img_list[0] if indicator == 1 else torch.Tensor(torch.zeros(1, 3, 224, 224).float())

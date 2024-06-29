@@ -26,15 +26,21 @@ from lavin.mm_adaptation import LaVIN
 import wandb
 import time
 
+
 @dataclass
 class TrainArgs:
+    # For evaluation
+    temperature: float = 1.0
+    top_p: float = 1.0
+
     batch_size: int = 2  # per gpu, effective batch size is batch_size * accum_iter * # gpus
     accum_iter: int = 2
     epochs: int = 100
     wandb_enable: bool = False
+    use_compile: bool = False
 
     # Model parameters
-    llama_model_path: str = './data/weights_2/'
+    llama_model_path: str = './data/weights/'
     llm_model: str = 'llama-2-13b-chat'  # 7B
     use_vicuna: bool = False
 
@@ -42,7 +48,6 @@ class TrainArgs:
     adapter_type: str = 'attn'  # normal, attn, adapter_box
     adapter_dim: int = 8
     hidden_proj: int = 128  # the visual adapter dim
-    temperature: float = 10.
     n_prompt: int = 6  # length of visual features
     adapter_scale: float = 1.  # the scales of adapter layer
     drop_path: float = 0.
@@ -72,7 +77,7 @@ class TrainArgs:
 
     seed: int = 0
     resume: str = ''
-    adapter_path: str = './checkpoint-99.pth'  # path to adapter checkpoint
+    adapter_path: str = ''  # path to adapter checkpoint
     wandb_enable: bool = False
 
     # datasets
@@ -82,7 +87,7 @@ class TrainArgs:
     prompt_format: str = 'CQM-A'
     options: list = field(default_factory=lambda: ["A", "B", "C", "D", "E"])
     caption_file: str = './data/captions.json'
-    data_root: str = '../data'
+    data_root: str = './data'
     use_caption: bool = False  # use image captions or not
     do_finetune: bool = False  # pre-train on large scale vl instruction
     do_pretrain: bool = False  # pre-train on large scale vl instruction
@@ -100,13 +105,13 @@ def main(**kwargs):
     misc.init_distributed_mode(args)
 
     if misc.is_main_process() and args.wandb_enable:
-        wandb.init(project='landslide', 
-        entity="landslide_tohoku",
-        name=args.output_dir.split('/')[-1],
-        dir=args.output_dir,
-        config=vars(args),
+        wandb.init(
+            project='landslide',
+            entity="landslide_tohoku",
+            name=args.output_dir.split('/')[-1],
+            dir=args.output_dir,
+            config=vars(args),
         )
-
 
     print('job dir: {}'.format(os.path.dirname(os.path.realpath(__file__))))
     print("{}".format(args).replace(', ', ',\n'))
@@ -163,6 +168,9 @@ def main(**kwargs):
     model = LaVIN(args)
 
     model.to(device)
+    if args.use_compile:
+        print("Compile the model...")
+        model = torch.compile(model)
 
     model_without_ddp = model
     print("Model = %s" % str(model_without_ddp))
@@ -180,7 +188,7 @@ def main(**kwargs):
 
     if args.distributed:
         print(args.gpu)
-        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu]), find_unused_parameters=True)
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[args.gpu], find_unused_parameters=True)
         model_without_ddp = model.module
 
     # following timm: set wd as 0 for bias and norm layers

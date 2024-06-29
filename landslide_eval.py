@@ -1,6 +1,6 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the GNU General Public License version 3.
-
+import argparse
 from typing import Tuple
 import os
 import torch
@@ -22,12 +22,6 @@ import torch.distributed as dist
 
 from landslide_train import TrainArgs
 from util.datasets import MSDataSet
-
-
-@dataclass
-class EvalArgs(TrainArgs):
-    generation_temperature: float = 0.1
-    top_p: float = 0.75
 
 
 def setup_model_parallel() -> Tuple[int, int]:
@@ -191,27 +185,48 @@ def load(args) -> LaVIN_Generator:
     return generator
 
 
-def main(**kwargs):
-    args = EvalArgs(**kwargs)
+def main(
+    llama_model_path="../data/weights/",
+    llm_model="13B",
+    adapter_path='./models/_LaVIN-13B-MS-VLIT/STRUCx2/checkpoint-99.pth',
+    temperature=1.,
+    top_p=0.95,
+    sampling_seed=23,
+):
+
+    args = TrainArgs(
+        llama_model_path=llama_model_path,
+        llm_model=llm_model,
+        adapter_path=adapter_path,
+        data_root="../data"
+    )
 
     setup_model_parallel()
     generator = load(args)
-    dataset = MSDataSet(args, 'all', args.llama_model_path, args.max_seq_len, test=True)
+    dataset = MSDataSet(args, 'msval', args.llama_model_path, args.max_seq_len, test=True)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=1, pin_memory=True)
 
     for (images, indicators, prompt_questions, prompt_answers, idxs) in dataloader:
+        print("image idx:", idxs)
+
         _, predictions = generator.generate(
-            prompt_questions,
+            prompts=[
+                """Instruction:  Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }.
+Responese: """
+            ],  # prompt_questions,
             images=images,
-            indicators=indicators,
-            max_gen_len=args.max_seq_len,
-            temperature=args.generation_temperature,
-            n_feats=args.n_prompt,
-            top_p=args.top_p,
+            indicators=[1],
+            max_gen_len=512,
+            n_feats=6,
+            temperature=temperature,
+            top_p=top_p,
+            sampling_seed=sampling_seed,
         )
 
-        print("Pred:", predictions)
+        print("Pred:", predictions, "\n")
         print("GT:", prompt_answers)
+        print("-----------------")
+        #break
 
 
 if __name__ == "__main__":
