@@ -215,8 +215,9 @@ class MSDataSet(Data.Dataset):
         # ---- Raw data loading ---
         # --------------------------
         self.data_root = args.data_root
-
         self.data = json.load(open(os.path.join(args.data_root, 'inst_filter_cap_struct_x2.json')))[split]
+        if self.test:
+            self.data = json.load(open(os.path.join(args.data_root, 'inst_val.json')))[split]
 
         self.tokenizer = Tokenizer(model_path=model_path + '/tokenizer.model')
         self.max_words = max_words
@@ -255,36 +256,29 @@ class MSDataSet(Data.Dataset):
     def __getitem__(self, idx):
         prompt_question = self.data[idx]['instruction']
         prompt_answer = self.data[idx]['answer']
-        if self.test:
-            if self.data[idx]['image'] is not None:
-                if self.data[idx]['image_source'] == 'sqa':
-                    image = Image.open(os.path.join(self.data_root, 'images/val', self.qids[idx], 'image.png')).convert('RGB')
-                if self.data[idx]['image_source'] == 'ms':
+
+        if self.data[idx]['image'] is not None:
+            if self.data[idx]['image_source'] == 'sqa':
+                image = Image.open(os.path.join(self.data_root, 'images/train', self.qids[idx], 'image.png')).convert('RGB')
+            if self.data[idx]['image_source'] == 'ms':
+                if self.test:
                     image = Image.open(os.path.join(self.data_root, 'images/msval', self.data[idx]['image'])).convert('RGB')
                 else:
-                    image = Image.open(os.path.join(self.data_root, 'images/val2014', 'COCO_val2014_' + self.data[idx]['image'])).convert('RGB')
-                image = self.transforms(image)
-                indicator = 1
-            else:
-                image = torch.Tensor(torch.zeros(3, 224, 224).float())
-                indicator = 0
-            example, labels, example_mask, label_mask = self.tokenize(prompt_question, prompt_answer)
-            return image, indicator, prompt_question, prompt_answer, idx
-        else:
-            if self.data[idx]['image'] is not None:
-                if self.data[idx]['image_source'] == 'sqa':
-                    image = Image.open(os.path.join(self.data_root, 'images/train', self.qids[idx], 'image.png')).convert('RGB')
-                if self.data[idx]['image_source'] == 'ms':
                     image = Image.open(os.path.join(self.data_root, 'images/mstrain', self.data[idx]['image'])).convert('RGB')
-                else:
-                    image = Image.open(os.path.join(self.data_root, 'images/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
-                image = self.transforms(image)
-                indicator = 1
             else:
-                image = torch.Tensor(torch.zeros(3, 224, 224).float())
-                indicator = 0
-            example, labels, example_mask, label_mask = self.tokenize(prompt_question, prompt_answer)
-            return example, labels, example_mask, image, indicator
+                image = Image.open(os.path.join(self.data_root, 'images/train2014', 'COCO_train2014_' + self.data[idx]['image'])).convert('RGB')
+            image = self.transforms(image)
+            indicator = 1
+        else:
+            image = torch.Tensor(torch.zeros(3, 224, 224).float())
+            indicator = 0
+
+        if self.test:
+            return image, indicator, prompt_question, prompt_answer, self.data[idx]['image']
+
+        example, labels, example_mask, label_mask = self.tokenize(prompt_question, prompt_answer)
+
+        return example, labels, example_mask, image, indicator
 
     def __len__(self):
         return len(self.qids)

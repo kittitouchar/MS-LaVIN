@@ -23,11 +23,21 @@ from landslide_train import TrainArgs
 def parse_args():
     parser = argparse.ArgumentParser(description="Demo")
     parser.add_argument("--llama_model_path", type=str, default="./data/weights/", help="dir of pre-trained weights.")
-    parser.add_argument("--llm_model", type=str, default="7B", help="the type of llm.")
-    parser.add_argument('--adapter_path', type=str, default='7B-checkpoint-99.pth')
+    parser.add_argument("--llm_model", type=str, default="llama-2-7b-chat", help="the type of llm.")
+    parser.add_argument('--visual_adapter_type', type=str, default='normal')
+    parser.add_argument('--adapter_type', type=str, default='attn')
+    parser.add_argument('--adapter_path', type=str, default='./models/quang/ft_ms100ep-7bchat2_scratch_bs32/checkpoint-99.pth')
+
     args = parser.parse_args()
 
-    eval_args = TrainArgs(llama_model_path=args.llama_model_path, adapter_path=args.adapter_path, llm_model=args.llm_model)
+    eval_args = TrainArgs(
+        llama_model_path=args.llama_model_path,
+        adapter_path=args.adapter_path,
+        llm_model=args.llm_model,
+        visual_adapter_type=args.visual_adapter_type,
+        adapter_type=args.adapter_type,
+    )
+    print(vars(eval_args))
     return eval_args
 
 

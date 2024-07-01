@@ -1,6 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# This software may be used and distributed according to the terms of the GNU General Public License version 3.
-import argparse
 from typing import Tuple
 import os
 import torch
@@ -14,7 +11,6 @@ from lavin.eval_model import ModelArgs, Transformer
 from lavin.tokenizer import Tokenizer
 from lavin.generator import LaVIN_Generator
 from lavin.mm_adapter import set_MMAdapter, set_Clip_Adapter
-from dataclasses import dataclass
 
 from pathlib import Path
 import fairscale.nn.model_parallel.initialize as fs_init
@@ -22,6 +18,38 @@ import torch.distributed as dist
 
 from landslide_train import TrainArgs
 from util.datasets import MSDataSet
+from openai import OpenAI
+import wandb
+
+
+def evaluate_similarity(prediction, answer):
+
+    prompt = f"""
+[Question] Describe the image in the aspects of disaster type, cause, detailed observations, and future risk
+
+[Human]
+{answer}
+[End of Human]
+
+[AI Assistant]
+{prediction}
+[End of AI Assistant]
+
+We would like to request your feedback on the performance of AI Assistant if it can generate responses having the same meaning with the responses from Human. Please rate the similarity level of details of the responses from AI Assistant and Human. Rate the responses separately in four topics including "Disaster Type", "Cause", "Observation", and "Future risk". AI Assistant receives a score for each topic on a scale of 1 to 10, where a higher score indicates better overall performance. Please first output a single line containing only four values indicating the scores for AI Assistant in the topics of "Disaster Type", "Cause", "Observation", and "Future risk", respectively. The four scores are separated by a space. In the subsequent line, please provide a comprehensive explanation of your evaluation, avoiding any potential bias and ensuring that the order in which the responses were presented does not affect your evaluation.
+"""
+    return prompt
+
+    client = OpenAI(api_key="OPENAI_API_KEY")
+    response = client.chat.completions.create(
+        messages=[{
+            "role": "user",
+            "content": prompt,
+        }],
+        model="gpt-4",
+        max_tokens=512,
+        temperature=0,
+    )
+    return response.choices[0].text.strip()
 
 
 def setup_model_parallel() -> Tuple[int, int]:
@@ -186,34 +214,54 @@ def load(args) -> LaVIN_Generator:
 
 
 def main(
-    llama_model_path="../data/weights/",
-    llm_model="13B",
-    adapter_path='./models/_LaVIN-13B-MS-VLIT/STRUCx2/checkpoint-99.pth',
-    temperature=1.,
-    top_p=0.95,
+    llama_model_path="./data/weights/",
+    llm_model="7B",
+    adapter_path='7B-checkpoint-99.pth',
+    visual_adapter_type='normal',
+    adapter_type='attn',
+    temperature=0.1,
+    top_p=0.75,
     sampling_seed=23,
+    gpt_score=False,
 ):
 
     args = TrainArgs(
         llama_model_path=llama_model_path,
         llm_model=llm_model,
+        visual_adapter_type=visual_adapter_type,
+        adapter_type=adapter_type,
         adapter_path=adapter_path,
-        data_root="../data"
     )
-
     setup_model_parallel()
     generator = load(args)
-    dataset = MSDataSet(args, 'msval', args.llama_model_path, args.max_seq_len, test=True)
+    dataset = MSDataSet(args, 'all', args.llama_model_path, args.max_seq_len, test=True)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=1, pin_memory=True)
 
-    for (images, indicators, prompt_questions, prompt_answers, idxs) in dataloader:
-        print("image idx:", idxs)
+    adapter_name = adapter_path.split('/')[-1].split('.')[0]  # checkpoint-99
+    dir_path = f"./models/quang/results/{llm_model}-ft_{adapter_name}"
+    exp_name = f"temp{temperature}-top_p{top_p}_seed{sampling_seed}"
+    log_path = f"{dir_path}/log_{exp_name}.txt"
+    gpt_path = f"{dir_path}/gpt_score.txt"
 
+    wandb.init(
+        project='landslide',
+        entity="landslide_tohoku",
+        name=f"{llm_model}-ft_{adapter_name}-{exp_name}",
+    )
+
+    os.makedirs(dir_path, exist_ok=True)
+
+    if gpt_score:
+        with open(gpt_path, "a") as f:
+            f.write(f"\n\nexp_name: {exp_name}\n")
+
+    avg_scores = []
+    for (images, _, _, prompt_answers, image_paths) in dataloader:
         _, predictions = generator.generate(
             prompts=[
                 """Instruction:  Describe the image in the aspects of disaster type, cause, detailed observations, and future risk using the following template. Template: { Type : [TXT], Cause : [TXT], Observation : [[TXT], [TXT], [TXT], ...], Future risk : [TXT] }.
-Responese: """
-            ],  # prompt_questions,
+Responese:"""
+            ],
             images=images,
             indicators=[1],
             max_gen_len=512,
@@ -222,11 +270,49 @@ Responese: """
             top_p=top_p,
             sampling_seed=sampling_seed,
         )
+        prediction = predictions[0]
+        answer = prompt_answers[0]
 
-        print("Pred:", predictions, "\n")
-        print("GT:", prompt_answers)
-        print("-----------------")
-        #break
+        with open(log_path, "a") as f:
+            f.write(f"Image path: {image_paths[0]}\n")
+            f.write(f"Pred: {prediction}\n")
+            f.write(f"GT: {answer}\n")
+            f.write("-----------------\n")
+
+            # print to console
+            # print("image path:", image_paths[0])
+            # print("Pred:", prediction, "\n")
+            # print("GT:", answer)
+            # print("-----------------\n")
+
+        gpt_feedback = evaluate_similarity(prediction, answer)
+        print(gpt_feedback)
+        print("\n\n")
+        print("========================================\n\n")
+
+        with open(log_path, "a") as f:
+            f.write(gpt_feedback)
+            f.write("\n")
+
+        if False:
+            gpt_feedback = evaluate_similarity(prediction, answer)
+            with open(log_path, "a") as f:
+                f.write(f"GPT-4: \n{gpt_feedback}\n")
+                f.write("========================================\n\n")
+
+                print("GPT-4: \n", gpt_feedback, "\n")
+                print("========================================\n\n")
+
+            # Extract the first line containing the scores
+            first_line = gpt_feedback.split("\n")[0]
+
+            # Split the scores and convert them to float
+            scores = list(map(float, first_line.split()))  # [1.0, 2.0, 3.0, 4.0]
+            avg_score = sum(scores) / len(scores)
+            avg_scores.append(avg_score)
+
+            with open(gpt_path, "a") as f:
+                f.write(f"Image path: {image_paths[0]}, scores: {scores}, avg_score: {avg_score}\n")
 
 
 if __name__ == "__main__":
